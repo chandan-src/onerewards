@@ -683,7 +683,7 @@ export default function LandingPage() {
           <div className="border-t border-[#F2F2F2]/20 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <p className="text-sm text-[#F2F2F2]/70">
-                &copy; {new Date().getFullYear()} One Rewards. All rights reserved.
+                &copy; {new Date().getFullYear()} One Rewards.All rights reserved.
               </p>
               <div className="flex space-x-6 mt-4 md:mt-0">
                 <a href="https://sites.google.com/asymmetri.in/mcmr/home" target="_blank" className="text-sm text-[#F2F2F2]/70 hover:text-[#EC7508]">
