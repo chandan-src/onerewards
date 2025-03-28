@@ -5,7 +5,6 @@ import Link from "next/link"
 import { ArrowRight, CheckCircle, Smartphone, Store, Award, BarChart3, QrCode } from "lucide-react"
 import Autoplay from 'embla-carousel-autoplay'
 import { useState } from "react"
-
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
