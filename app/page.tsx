@@ -102,6 +102,7 @@ export default function LandingPage() {
           </div>
         </section>
 
+
         <section id="features" className="py-20 bg-[#F2F2F2]">
           <div className="container">
             <div className="text-center mb-16">
@@ -163,6 +164,37 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
+
+   
+        <section className="py-20 bg-white">
+          <div className="container">
+            <div className="grid gap-8 md:grid-cols-2 items-center">
+              <div className="relative flex justify-center">
+                <div className="relative h-[300px] w-[300px] md:h-[500px] md:w-[400px] rounded-3xl">
+                  <Image src="/images/mockup.png" alt="One Rewards App" width={600} height={500} className="object-contain w-full h-full scale-x-[-1]" priority />
+                </div>
+              </div>
+              <div className="space-y-6">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium leading-tight tracking-tight text-[#1A1A1A]">
+                  Start Your Business Journey with One Rewards
+                </h2>
+                <p className="text-base md:text-lg lg:text-xl text-[#1A1A1A]/70">
+                  Launch your business with a powerful loyalty program that helps you attract and retain customers from day one. Our platform provides everything you need to build lasting customer relationships and drive sustainable growth.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                  <Button size="lg" className="bg-gradient-to-r from-[#EC7508] to-[#C11805] text-white hover:opacity-90">
+                    <Link href="#download">
+                      Start Your Business
+                  
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
         <section id="business-types" className="py-20">
           <div className="container">
             <div className="text-center mb-12">
@@ -502,34 +534,34 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
-        <section className="py-20 bg-[#F2F2F2]" id="download">
+        <section className="py-16 bg-[#F2F2F2]" id="download">
           <div className="container">
-            <div className="text-center mb-16">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-4">Download Our Apps</h2>
-              <p className="text-base md:text-lg text-[#1A1A1A]/70 max-w-3xl mx-auto">Get started with One Rewards today</p>
+            <div className="text-center mb-12">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-3">Download Our Apps</h2>
+              <p className="text-base md:text-lg text-[#1A1A1A]/70 max-w-2xl mx-auto">Get started with One Rewards today</p>
             </div>
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-                <div className="from-[#EC7508] to-[#C11805] p-6">
+            <div className="flex flex-col md:flex-row gap-6 max-w-2xl mx-auto">
+              <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+                <div className="bg-gradient-to-r from-[#EC7508] to-[#C11805] p-5 h-[200px] ">
                   <div className="flex justify-center">
                     <Image
                       src="/images/logomark.png"
                       alt="One Rewards"
-                      width={80}
-                      height={80}
-                      className="h-auto w-auto"
+                      width={100}
+                      height={40}
+                  
                     />
                   </div>
-                  <h3 className="text-xl md:text-2xl font-medium text-black text-center mt-4">One Rewards</h3>
-                  <p className="text-sm md:text-base text-black/80 text-center mt-2">For Shoppers & Customers</p>
+                  <h3 className="text-lg md:text-xl font-medium text-white text-center mt-3">One Rewards</h3>
+                  <p className="text-sm text-white/90 text-center mt-1">For Shoppers & Customers</p>
                 </div>
-                <div className="p-6 bg-orange-600">
-                  <p className="text-base md:text-lg text-[#1A1A1A]/70 mb-6">
+                <div className="p-5">
+                  <p className="text-sm md:text-base text-[#1A1A1A]/70 mb-4 text-center">
                     Earn rewards at all your favorite stores, track your points, and redeem exclusive offers.
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Link target="_blank" href="https://play.google.com/store/apps/details?id=com.mcmr.user&pcampaignid=web_share" className="flex items-center justify-center bg-black text-white rounded-lg px-4 py-2 hover:bg-black/80">
-                      <svg viewBox="0 0 24 24" className="w-6 h-6 mr-2" fill="currentColor">
+                  <div className="flex justify-center mb-0">
+                    <Link target="_blank" href="https://play.google.com/store/apps/details?id=com.mcmr.user&pcampaignid=web_share" className="inline-flex items-center bg-black text-white rounded-lg px-4 py-2 hover:bg-black/80 transition-colors duration-300">
+                      <svg viewBox="0 0 24 24" className="w-5 h-5 mr-2" fill="currentColor">
                         <path d="M17.5,12.5c0-0.91,0.55-1.73,1.4-2.08c-0.25-0.6-0.63-1.16-1.12-1.63c-0.46-0.46-0.95-0.82-1.45-1.06 c-0.43,0.24-1.07,0.35-1.74,0.35c-0.71,0-1.37-0.11-1.83-0.35c-0.37,0.2-0.76,0.48-1.15,0.86c-0.95,0.91-1.69,2.28-1.69,3.9 c0,1.55,0.66,2.93,1.67,3.9c0.41,0.41,0.82,0.68,1.21,0.85c0.45-0.23,1.1-0.35,1.79-0.35c0.72,0,1.38,0.12,1.81,0.35 c0.5-0.25,0.99-0.6,1.45-1.06c0.47-0.47,0.84-1.03,1.08-1.63C18.05,14.23,17.5,13.41,17.5,12.5z M14.8,7.5 c0.65,0,1.18,0.53,1.18,1.18c0,0.65-0.53,1.18-1.18,1.18c-0.65,0-1.18-0.53-1.18-1.18C13.62,8.03,14.15,7.5,14.8,7.5z" />
                       </svg>
                       Download Now
@@ -537,27 +569,27 @@ export default function LandingPage() {
                   </div>
                 </div>
               </div>
-              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-                <div className=" from-[#EC7508] to-[#C11805] p-6">
+              <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+              <div className="bg-gradient-to-r from-[#EC7508] to-[#C11805] p-5 pb-3 h-[200px] ">
                   <div className="flex justify-center">
                     <Image
                       src="/images/logomark.png"
                       alt="One Rewards"
-                      width={80}
-                      height={80}
-                      className="h-auto w-auto"
+                      width={100}
+                      height={40}
+                  
                     />
                   </div>
-                  <h3 className="text-xl md:text-2xl font-medium text-black text-center mt-4">One Rewards Business</h3>
-                  <p className="text-sm md:text-base text-black/80 text-center mt-2">For Retailers & Merchants</p>
+                  <h3 className="text-lg md:text-xl font-medium text-white text-center mt-3">One Rewards Business</h3>
+                  <p className="text-sm text-white/90 text-center mt-1">For Retailers & Merchants</p>
                 </div>
-                <div className="p-6 bg-orange-600">
-                  <p className="text-base md:text-lg text-[#1A1A1A]/70 mb-6">
+                <div className="p-5">
+                  <p className="text-sm md:text-base text-[#1A1A1A]/70 mb-4 text-center">
                     Manage your loyalty program, track customer engagement, and grow your business.
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Link target="_blank" href="https://play.google.com/store/apps/details?id=com.mcmr.store&pcampaignid=web_share" className="flex items-center justify-center bg-black text-white rounded-lg px-4 py-2 hover:bg-black/80">
-                      <svg viewBox="0 0 24 24" className="w-6 h-6 mr-2" fill="currentColor">
+                  <div className="flex justify-center">
+                    <Link target="_blank" href="https://play.google.com/store/apps/details?id=com.mcmr.store&pcampaignid=web_share" className="inline-flex items-center bg-black text-white rounded-lg px-4 py-2 hover:bg-black/80 transition-colors duration-300">
+                      <svg viewBox="0 0 24 24" className="w-5 h-5 mr-2" fill="currentColor">
                         <path d="M17.5,12.5c0-0.91,0.55-1.73,1.4-2.08c-0.25-0.6-0.63-1.16-1.12-1.63c-0.46-0.46-0.95-0.82-1.45-1.06 c-0.43,0.24-1.07,0.35-1.74,0.35c-0.71,0-1.37-0.11-1.83-0.35c-0.37,0.2-0.76,0.48-1.15,0.86c-0.95,0.91-1.69,2.28-1.69,3.9 c0,1.55,0.66,2.93,1.67,3.9c0.41,0.41,0.82,0.68,1.21,0.85c0.45-0.23,1.1-0.35,1.79-0.35c0.72,0,1.38,0.12,1.81,0.35 c0.5-0.25,0.99-0.6,1.45-1.06c0.47-0.47,0.84-1.03,1.08-1.63C18.05,14.23,17.5,13.41,17.5,12.5z M14.8,7.5 c0.65,0,1.18,0.53,1.18,1.18c0,0.65-0.53,1.18-1.18,1.18c-0.65,0-1.18-0.53-1.18-1.18C13.62,8.03,14.15,7.5,14.8,7.5z" />
                       </svg>
                       Download Now
