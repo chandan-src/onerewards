@@ -48,7 +48,7 @@ export default function LandingPage() {
             </Link>
           </nav>
           <div className="flex items-center gap-4">
-            <Link href="/download" className=" md:block">
+            <Link href="#download" className=" md:block">
               <Button variant="outline" className="border-[#EC7508] text-[#EC7508] hover:bg-[#EC7508] hover:text-white">
                 Start Now
               </Button>

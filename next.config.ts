@@ -7,7 +7,13 @@ const nextConfig: NextConfig = {
   },
   trailingSlash: true,
   basePath: "",
-  assetPrefix: "/"
+  assetPrefix: "/",
+  distDir: "dist",
+  experimental: {
+    serverActions: {
+      allowedOrigins: ["localhost:3000"]
+    }
+  }
 };
 
 export default nextConfig;
