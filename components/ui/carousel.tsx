@@ -2,23 +2,24 @@
 
 import * as React from "react"
 import useEmblaCarousel from "embla-carousel-react"
-import type { EmblaOptionsType } from "embla-carousel"
+import type { EmblaOptionsType, EmblaPluginType, EmblaCarouselType } from "embla-carousel"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
-type CarouselApi = any
+type CarouselApi = EmblaCarouselType
+
 type CarouselProps = {
   opts?: EmblaOptionsType
-  plugins?: any[]
+  plugins?: EmblaPluginType[]
   orientation?: "horizontal" | "vertical"
   setApi?: (api: CarouselApi) => void
 }
 
 type CarouselContextProps = {
   carouselRef: ReturnType<typeof useEmblaCarousel>[0]
-  api: ReturnType<typeof useEmblaCarousel>[1]
+  api: EmblaCarouselType | undefined
   scrollPrev: () => void
   scrollNext: () => void
   canScrollPrev: boolean
