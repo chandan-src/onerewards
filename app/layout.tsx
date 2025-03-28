@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
-import { Inter, Titillium_Web } from 'next/font/google'
+import { Titillium_Web } from 'next/font/google'
 import './globals.css'
 
 const titilliumWeb = Titillium_Web({
   subsets: ['latin'],
-  weight: ['200', '300', '400', '600', '700', '900'],
-  variable: '--font-titillium',
+  weight: ['400', '700'],
+  display: 'swap'
 })
 
 export const metadata: Metadata = {
@@ -19,8 +19,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={titilliumWeb.variable}>
-      <body className="font-titillium overflow-x-hidden">{children}</body>
+    <html lang="en" className={titilliumWeb.className}>
+      <body className="overflow-x-hidden">{children}</body>
     </html>
   )
 }

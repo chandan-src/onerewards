@@ -81,13 +81,7 @@
   }
 }
 
-@font-face {
-  font-family: "Mayeka";
-  src: url("/fonts/Mayeka-DemiBold.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
+
 
 h1,
 h2,
@@ -96,9 +90,7 @@ h4,
 h5,
 h6,
 button,
-.btn {
-  font-family: "Mayeka", sans-serif;
-}
+
 
 .font-titillium {
   font-family: var(--font-titillium);
