@@ -11,6 +11,11 @@ const titilliumWeb = Titillium_Web({
 export const metadata: Metadata = {
   title: 'One Rewards - Customer Loyalty Platform',
   description: 'The complete loyalty rewards platform for retail businesses.',
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
 }
 
 export default function RootLayout({

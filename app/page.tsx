@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, CheckCircle, Smartphone, Store, Award, BarChart3, QrCode } from "lucide-react"
 import Autoplay from 'embla-carousel-autoplay'
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
@@ -16,23 +16,55 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { motion, useInView } from "framer-motion"
 
 export default function LandingPage() {
   const [isOpen, setIsOpen] = useState(false)
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
+
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+
+  const staggerContainer = {
+    animate: {
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.1
+      }
+    }
+  }
+
+  const scaleIn = {
+    initial: { opacity: 0, scale: 0.9 },
+    animate: { opacity: 1, scale: 1 },
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+
+  const slideIn = {
+    initial: { opacity: 0, x: -30 },
+    animate: { opacity: 1, x: 0 },
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col scroll-smooth" id="header">
       <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
         <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-2">
-            <Image
-              src="/images/logo_black.png"
-              alt="One Rewards Logo"
-              width={120}
-              height={40}
-              className="object-contain"
-              priority
-            />
+            <Link href="#header">
+              <Image
+                src="/images/logo_black.png"
+                alt="One Rewards Logo"
+                width={120}
+                height={40}
+                className="object-contain"
+                priority
+              />
+            </Link>
           </div>
           <nav className="hidden md:flex gap-6">
             <Link href="#features" className="text-[#1A1A1A] hover:text-[#EC7508] font-medium transition-colors">
@@ -53,7 +85,7 @@ export default function LandingPage() {
               </Button>
             </Link>
           </div>
-         
+
         </div>
       </header>
       <main className="flex-1">
@@ -61,7 +93,12 @@ export default function LandingPage() {
           <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10"></div>
           <div className="container relative">
             <div className="grid gap-8 md:grid-cols-2 items-center">
-              <div className="space-y-6 text-[#F2F2F2]">
+              <motion.div
+                className="space-y-6 text-[#F2F2F2]"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+              >
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight tracking-tight">
                   Boost Customer Loyalty with One Rewards
                 </h1>
@@ -77,35 +114,30 @@ export default function LandingPage() {
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </div>
-                <div className="flex items-center gap-4 pt-2">
-                  <div className="flex -space-x-2">
-                    {[1, 2, 3, 4].map((i) => (
-                      <div
-                        key={i}
-                        className="h-8 w-8 rounded-full bg-white/90 border-2 border-[#EC7508] flex items-center justify-center text-xs font-medium text-[#EC7508]"
-                      >
-                        {i}
-                      </div>
-                    ))}
-                  </div>
-                  <p className="text-sm opacity-90">
-                    Trusted by <span className="font-medium">100+</span> businesses
-                  </p>
+              </motion.div>
+              <motion.div
+                className="relative flex justify-center"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <div className="">
+                  <Image src="/images/main2.png" alt="One Rewards App" width={700} height={700} className="object-contain w-full h-full" priority />
                 </div>
-              </div>
-              <div className="relative flex justify-center">
-                <div className="relative h-[300px] w-[300px] md:h-[500px] md:w-[400px] rounded-3xl">
-                  <Image src="/images/mockup.png" alt="One Rewards App" width={600} height={500} className="object-contain w-full h-full" priority />
-                </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
 
 
-        <section id="features" className="py-20 bg-[#F2F2F2]">
+        <section id="features" className="py-20 bg-[#F2F2F2]" ref={ref}>
           <div className="container">
-            <div className="text-center mb-16">
+            <motion.div
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5 }}
+            >
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-4">
                 Everything You Need to Build Customer Loyalty
               </h2>
@@ -113,8 +145,13 @@ export default function LandingPage() {
                 One Rewards provides all the tools retail businesses need to create, manage, and grow successful loyalty
                 programs.
               </p>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 ">
+            </motion.div>
+            <motion.div
+              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+              variants={staggerContainer}
+              initial="initial"
+              animate={isInView ? "animate" : "initial"}
+            >
               {[
                 {
                   icon: <Smartphone className="h-10 w-10 text-[#EC7508]" />,
@@ -147,34 +184,57 @@ export default function LandingPage() {
                   description: "Target specific customer groups with personalized rewards and incentives.",
                 },
               ].map((feature, index) => (
-                <Card key={index} className="border-none shadow-md hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="mb-4">{feature.icon}</div>
-                    <h3 className="text-lg md:text-xl font-medium mb-2 text-[#1A1A1A]">{feature.title}</h3>
-                    <p className="text-sm md:text-base text-[#1A1A1A]/70">{feature.description}</p>
-                  </CardContent>
-                </Card>
+                <motion.div
+                  key={index}
+                  variants={fadeInUp}
+                >
+                  <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
+                    <CardContent className="p-6">
+                      <div className="mb-4">{feature.icon}</div>
+                      <h3 className="text-lg md:text-xl font-medium mb-2 text-[#1A1A1A]">{feature.title}</h3>
+                      <p className="text-sm md:text-base text-[#1A1A1A]/70">{feature.description}</p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               ))}
-            </div>
-            <div className="mt-12 text-center">
+            </motion.div>
+            <motion.div
+              className="mt-12 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
               <Button className="bg-gradient-to-r from-[#EC7508] to-[#C11805] hover:opacity-90 text-white">
-                Explore All Features
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <Link href="#download">
+                  Explore Now
+                </Link>
               </Button>
-            </div>
+            </motion.div>
           </div>
         </section>
 
-   
+
         <section className="py-20 bg-white">
           <div className="container">
             <div className="grid gap-8 md:grid-cols-2 items-center">
-              <div className="relative flex justify-center">
-                <div className="relative h-[300px] w-[300px] md:h-[500px] md:w-[400px] rounded-3xl">
-                  <Image src="/images/mockup.png" alt="One Rewards App" width={600} height={500} className="object-contain w-full h-full scale-x-[-1]" priority />
+              <motion.div
+                className="relative flex justify-center"
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
+                <div className="">
+                  <Image src="/images/main4.png" alt="One Rewards App" width={700} height={700} className="object-contain w-full h-full " priority />
                 </div>
-              </div>
-              <div className="space-y-6">
+              </motion.div>
+              <motion.div
+                className="space-y-6"
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium leading-tight tracking-tight text-[#1A1A1A]">
                   Start Your Business Journey with One Rewards
                 </h2>
@@ -185,17 +245,16 @@ export default function LandingPage() {
                   <Button size="lg" className="bg-gradient-to-r from-[#EC7508] to-[#C11805] text-white hover:opacity-90">
                     <Link href="#download">
                       Start Your Business
-                  
                     </Link>
                   </Button>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
 
 
-        <section id="business-types" className="py-20">
+        <section id="business-types" className="py-10">
           <div className="container">
             <div className="text-center mb-12">
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-4">
@@ -265,7 +324,71 @@ export default function LandingPage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="md:hidden">
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                  containScroll: "trimSnaps",
+                }}
+                plugins={[
+                  Autoplay({
+                    delay: 1000,
+                    stopOnInteraction: false,
+                    stopOnMouseEnter: true,
+                    rootNode: (emblaRoot) => emblaRoot.parentElement,
+                  }),
+                ]}
+                className="w-full"
+              >
+                <CarouselContent className="-ml-2 md:-ml-4">
+                  {[
+                    {
+                      icon: "🎁",
+                      title: "Earn Rewards Everywhere",
+                      description: "Collect points and earn rewards at all your favorite stores with a single app."
+                    },
+                    {
+                      icon: "💰",
+                      title: "Save Money",
+                      description: "Get exclusive discounts, special offers, and personalized deals based on your shopping habits."
+                    },
+                    {
+                      icon: "🔔",
+                      title: "Instant Notifications",
+                      description: "Receive alerts about new rewards, point balances, and nearby participating businesses."
+                    },
+                    {
+                      icon: "📱",
+                      title: "Easy to Use",
+                      description: "Simple, intuitive interface makes it easy to track and redeem your rewards."
+                    },
+                    {
+                      icon: "🔒",
+                      title: "Secure & Private",
+                      description: "Your data is protected with bank-level security and privacy controls."
+                    },
+                    {
+                      icon: "🌟",
+                      title: "VIP Experiences",
+                      description: "Unlock exclusive experiences and premium rewards as you earn more points."
+                    }
+                  ].map((benefit, index) => (
+                    <CarouselItem key={index} className="pl-2 md:pl-4 basis-full">
+                      <div className="bg-[#F2F2F2] rounded-xl p-6 hover:shadow-lg transition-all hover:-translate-y-1">
+                        <div className="text-4xl mb-4">{benefit.icon}</div>
+                        <h3 className="text-lg md:text-xl font-medium mb-2 text-[#1A1A1A]">{benefit.title}</h3>
+                        <p className="text-sm md:text-base text-[#1A1A1A]/70">{benefit.description}</p>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+              </Carousel>
+            </div>
+
+            <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 {
                   icon: "🎁",
@@ -308,8 +431,9 @@ export default function LandingPage() {
 
             <div className="mt-12 text-center">
               <Button className="bg-gradient-to-r from-[#EC7508] to-[#C11805] hover:opacity-90 text-white">
-                Start Earning Rewards
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <Link href="#download">
+                  Start Earning Rewards
+                </Link>
               </Button>
             </div>
           </div>
@@ -380,73 +504,113 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section className="py-20 bg-white">
+        <section id="testimonials" className="pb-20 bg-[#F2F2F2]">
           <div className="container">
-            <div className="text-center mb-16">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-4">
-                What Our Users Say
-              </h2>
+            <motion.div
+              className="text-center mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-4">What Our Customers Say</h2>
               <p className="text-base md:text-lg text-[#1A1A1A]/70 max-w-3xl mx-auto">
-                Join thousands of happy users who are earning rewards with every purchase
+                Hear from businesses that have transformed their customer loyalty with One Rewards.
               </p>
-            </div>
-
-            <div className="relative">
+            </motion.div>
+            <div className="md:hidden">
               <Carousel
                 opts={{
                   align: "start",
                   loop: true,
+                  containScroll: "trimSnaps",
                 }}
+                plugins={[
+                  Autoplay({
+                    delay: 1000,
+                    stopOnInteraction: false,
+                    stopOnMouseEnter: true,
+                    rootNode: (emblaRoot) => emblaRoot.parentElement,
+                  }),
+                ]}
                 className="w-full"
               >
                 <CarouselContent className="-ml-2 md:-ml-4">
                   {[
                     {
-                      quote: "I've earned over $500 in rewards this year alone! One Rewards has completely changed how I shop.",
-                      name: "David M.",
-                      location: "Chicago, IL",
-                      rating: 5
+                      quote:
+                        "One Rewards helped us increase our repeat customer rate by 40% in just three months. The platform is incredibly easy to use.",
+                      name: "Sarah Johnson",
+                      role: "Owner, Bloom Boutique",
                     },
                     {
-                      quote: "I love that I can earn points at so many different stores with just one app. So convenient!",
-                      name: "Lisa T.",
-                      location: "Austin, TX",
-                      rating: 5
+                      quote:
+                        "The analytics dashboard gives us insights we never had before. We can now see exactly what drives our customers to return.",
+                      name: "Michael Chen",
+                      role: "Marketing Director, Urban Eats",
                     },
                     {
-                      quote: "The personalized offers are amazing. It's like the app knows exactly what I want to buy next.",
-                      name: "James K.",
-                      location: "Seattle, WA",
-                      rating: 5
+                      quote:
+                        "Implementation was seamless and our customers love the rewards program. It's been a game-changer for our business.",
+                      name: "Jessica Williams",
+                      role: "CEO, Fitness First",
                     },
-                    {
-                      quote: "I've discovered so many great local businesses through the app. Highly recommend!",
-                      name: "Sophia R.",
-                      location: "Miami, FL",
-                      rating: 4
-                    },
-                    {
-                      quote: "The birthday rewards are the best! Got a free meal at my favorite restaurant last month.",
-                      name: "Marcus J.",
-                      location: "Atlanta, GA",
-                      rating: 5
-                    }
-                  ].map((review, index) => (
-                    <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                      <div className="bg-gradient-to-br from-[#EC7508]/10 to-[#C11805]/10 rounded-xl p-6 shadow-md h-full">
-                        <div className="mb-4 text-[#EC7508]">{"★".repeat(review.rating)}</div>
-                        <p className="text-base md:text-lg text-[#1A1A1A] mb-6 italic">"{review.quote}"</p>
-                        <div>
-                          <p className="text-lg md:text-xl font-medium text-[#1A1A1A]">{review.name}</p>
-                          <p className="text-sm md:text-base text-[#1A1A1A]/70">{review.location}</p>
-                        </div>
-                      </div>
+                  ].map((testimonial, index) => (
+                    <CarouselItem key={index} className="pl-2 md:pl-4 basis-full">
+                      <Card className="border-none shadow-md bg-white">
+                        <CardContent className="p-6">
+                          <div className="mb-4 text-[#EC7508]">{"★".repeat(5)}</div>
+                          <p className="text-base md:text-lg text-[#1A1A1A] mb-6 italic">"{testimonial.quote}"</p>
+                          <div>
+                            <p className="text-lg md:text-xl font-medium text-[#1A1A1A]">{testimonial.name}</p>
+                            <p className="text-sm md:text-base text-[#1A1A1A]/70">{testimonial.role}</p>
+                          </div>
+                        </CardContent>
+                      </Card>
                     </CarouselItem>
                   ))}
                 </CarouselContent>
                 <CarouselPrevious />
                 <CarouselNext />
               </Carousel>
+            </div>
+            <div className="hidden md:grid md:grid-cols-3 gap-8">
+              {[
+                {
+                  quote:
+                    "One Rewards helped us increase our repeat customer rate by 40% in just three months. The platform is incredibly easy to use.",
+                  name: "Sarah Johnson",
+                  role: "Owner, Bloom Boutique",
+                },
+                {
+                  quote:
+                    "The analytics dashboard gives us insights we never had before. We can now see exactly what drives our customers to return.",
+                  name: "Michael Chen",
+                  role: "Marketing Director, Urban Eats",
+                },
+                {
+                  quote:
+                    "Implementation was seamless and our customers love the rewards program. It's been a game-changer for our business.",
+                  name: "Jessica Williams",
+                  role: "CEO, Fitness First",
+                },
+              ].map((testimonial, index) => (
+                <motion.div
+                  key={index}
+                  variants={fadeInUp}
+                >
+                  <Card className="border-none shadow-md bg-white">
+                    <CardContent className="p-6">
+                      <div className="mb-4 text-[#EC7508]">{"★".repeat(5)}</div>
+                      <p className="text-base md:text-lg text-[#1A1A1A] mb-6 italic">"{testimonial.quote}"</p>
+                      <div>
+                        <p className="text-lg md:text-xl font-medium text-[#1A1A1A]">{testimonial.name}</p>
+                        <p className="text-sm md:text-base text-[#1A1A1A]/70">{testimonial.role}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
@@ -491,49 +655,86 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="testimonials" className="py-20 bg-[#F2F2F2]">
+        <section className="py-20 bg-white">
           <div className="container">
             <div className="text-center mb-16">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-4">What Our Customers Say</h2>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-4">
+                What Our Users Say
+              </h2>
               <p className="text-base md:text-lg text-[#1A1A1A]/70 max-w-3xl mx-auto">
-                Hear from businesses that have transformed their customer loyalty with One Rewards.
+                Join thousands of happy users who are earning rewards with every purchase
               </p>
             </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {[
-                {
-                  quote:
-                    "One Rewards helped us increase our repeat customer rate by 40% in just three months. The platform is incredibly easy to use.",
-                  name: "Sarah Johnson",
-                  role: "Owner, Bloom Boutique",
-                },
-                {
-                  quote:
-                    "The analytics dashboard gives us insights we never had before. We can now see exactly what drives our customers to return.",
-                  name: "Michael Chen",
-                  role: "Marketing Director, Urban Eats",
-                },
-                {
-                  quote:
-                    "Implementation was seamless and our customers love the rewards program. It's been a game-changer for our business.",
-                  name: "Jessica Williams",
-                  role: "CEO, Fitness First",
-                },
-              ].map((testimonial, index) => (
-                <Card key={index} className="border-none shadow-md bg-white">
-                  <CardContent className="p-6">
-                    <div className="mb-4 text-[#EC7508]">{"★".repeat(5)}</div>
-                    <p className="text-base md:text-lg text-[#1A1A1A] mb-6 italic">"{testimonial.quote}"</p>
-                    <div>
-                      <p className="text-lg md:text-xl font-medium text-[#1A1A1A]">{testimonial.name}</p>
-                      <p className="text-sm md:text-base text-[#1A1A1A]/70">{testimonial.role}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+
+            <div className="relative">
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                  containScroll: "trimSnaps",
+                }}
+                plugins={[
+                  Autoplay({
+                    delay: 1000,
+                    stopOnInteraction: false,
+                    stopOnMouseEnter: true,
+                    rootNode: (emblaRoot) => emblaRoot.parentElement,
+                  }),
+                ]}
+                className="w-full"
+              >
+                <CarouselContent className="-ml-2 md:-ml-4">
+                  {[
+                    {
+                      quote: "I've earned over $500 in rewards this year alone! One Rewards has completely changed how I shop.",
+                      name: "David M.",
+                      location: "Chicago, IL",
+                      rating: 5
+                    },
+                    {
+                      quote: "I love that I can earn points at so many different stores with just one app. So convenient!",
+                      name: "Lisa T.",
+                      location: "Austin, TX",
+                      rating: 5
+                    },
+                    {
+                      quote: "The personalized offers are amazing. It's like the app knows exactly what I want to buy next.",
+                      name: "James K.",
+                      location: "Seattle, WA",
+                      rating: 5
+                    },
+                    {
+                      quote: "I've discovered so many great local businesses through the app. Highly recommend!",
+                      name: "Sophia R.",
+                      location: "Miami, FL",
+                      rating: 4
+                    },
+                    {
+                      quote: "The birthday rewards are the best! Got a free meal at my favorite restaurant last month.",
+                      name: "Marcus J.",
+                      location: "Atlanta, GA",
+                      rating: 5
+                    }
+                  ].map((review, index) => (
+                    <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                      <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all hover:-translate-y-1 h-full border border-[#EC7508]/20 hover:border-[#EC7508]/40">
+                        <div className="mb-4 text-[#EC7508]">{"★".repeat(review.rating)}</div>
+                        <p className="text-base md:text-lg text-[#1A1A1A] mb-6 italic">"{review.quote}"</p>
+                        <div>
+                          <p className="text-lg md:text-xl font-medium text-[#1A1A1A]">{review.name}</p>
+                          <p className="text-sm md:text-base text-[#1A1A1A]/70">{review.location}</p>
+                        </div>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+              </Carousel>
             </div>
           </div>
         </section>
+
         <section className="py-16 bg-[#F2F2F2]" id="download">
           <div className="container">
             <div className="text-center mb-12">
@@ -542,14 +743,14 @@ export default function LandingPage() {
             </div>
             <div className="flex flex-col md:flex-row gap-6 max-w-2xl mx-auto">
               <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-                <div className="bg-gradient-to-r from-[#EC7508] to-[#C11805] p-5 h-[200px] ">
+                <div className="bg-gradient-to-t from-orange-600 to-white p-5 h-[200px]">
                   <div className="flex justify-center">
                     <Image
                       src="/images/logomark.png"
                       alt="One Rewards"
                       width={100}
                       height={40}
-                  
+
                     />
                   </div>
                   <h3 className="text-lg md:text-xl font-medium text-white text-center mt-3">One Rewards</h3>
@@ -559,25 +760,31 @@ export default function LandingPage() {
                   <p className="text-sm md:text-base text-[#1A1A1A]/70 mb-4 text-center">
                     Earn rewards at all your favorite stores, track your points, and redeem exclusive offers.
                   </p>
-                  <div className="flex justify-center mb-0">
-                    <Link target="_blank" href="https://play.google.com/store/apps/details?id=com.mcmr.user&pcampaignid=web_share" className="inline-flex items-center bg-black text-white rounded-lg px-4 py-2 hover:bg-black/80 transition-colors duration-300">
+                  <div className="flex flex-col gap-3 justify-center">
+                    <Link target="_blank" href="https://play.google.com/store/apps/details?id=com.mcmr.user&pcampaignid=web_share" className="inline-flex items-center justify-center bg-black/90 text-white rounded-lg px-4 py-2 hover:bg-black/80 transition-colors duration-300">
                       <svg viewBox="0 0 24 24" className="w-5 h-5 mr-2" fill="currentColor">
-                        <path d="M17.5,12.5c0-0.91,0.55-1.73,1.4-2.08c-0.25-0.6-0.63-1.16-1.12-1.63c-0.46-0.46-0.95-0.82-1.45-1.06 c-0.43,0.24-1.07,0.35-1.74,0.35c-0.71,0-1.37-0.11-1.83-0.35c-0.37,0.2-0.76,0.48-1.15,0.86c-0.95,0.91-1.69,2.28-1.69,3.9 c0,1.55,0.66,2.93,1.67,3.9c0.41,0.41,0.82,0.68,1.21,0.85c0.45-0.23,1.1-0.35,1.79-0.35c0.72,0,1.38,0.12,1.81,0.35 c0.5-0.25,0.99-0.6,1.45-1.06c0.47-0.47,0.84-1.03,1.08-1.63C18.05,14.23,17.5,13.41,17.5,12.5z M14.8,7.5 c0.65,0,1.18,0.53,1.18,1.18c0,0.65-0.53,1.18-1.18,1.18c-0.65,0-1.18-0.53-1.18-1.18C13.62,8.03,14.15,7.5,14.8,7.5z" />
+                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
                       </svg>
-                      Download Now
+                      Download on Google Play
+                    </Link>
+                    <Link target="_blank" href="https://play.google.com/store/apps/details?id=com.mcmr.user&pcampaignid=web_share" className="inline-flex items-center justify-center bg-black/90 text-white rounded-lg px-4 py-2 hover:bg-black/80 transition-colors duration-300">
+                      <svg viewBox="0 0 24 24" className="w-5 h-5 mr-2" fill="currentColor">
+                        <path d="M18.71,19.5c-.83,1.24-1.71,2.45-3.05,2.47-1.34,0.03-1.77-.79-3.29-.79-1.53,0-2,0.77-3.27,0.82-1.31,0.05-2.3-1.32-3.14-2.53C4.25,17,2.94,12.45,4.7,9.39c0.87-1.52,2.43-2.48,4.12-2.51c1.28-0.02,2.5,0.87,3.29,0.87c0.78,0,2.26-1.08,3.81-.91c0.65,0.03,2.47,0.26,3.64,1.98c-0.09,0.06-2.17,1.28-2.15,3.81c0.03,3.02,2.65,4.03,2.68,4.04-0.03,0.07-0.42,1.44-1.38,2.83M13,7.5c0.03-2,1.17-3.33,2.19-4.19c0.99-0.85,2.1-1.3,2.1-1.3c-1.13,1.72-2.96,2.92-3.29,4.49" />
+                      </svg>
+                      Download on App Store
                     </Link>
                   </div>
                 </div>
               </div>
               <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-              <div className="bg-gradient-to-r from-[#EC7508] to-[#C11805] p-5 pb-3 h-[200px] ">
+                <div className="bg-gradient-to-t from-orange-600 to-white p-5 h-[200px]">
                   <div className="flex justify-center">
                     <Image
                       src="/images/logomark.png"
                       alt="One Rewards"
                       width={100}
                       height={40}
-                  
+
                     />
                   </div>
                   <h3 className="text-lg md:text-xl font-medium text-white text-center mt-3">One Rewards Business</h3>
@@ -587,12 +794,18 @@ export default function LandingPage() {
                   <p className="text-sm md:text-base text-[#1A1A1A]/70 mb-4 text-center">
                     Manage your loyalty program, track customer engagement, and grow your business.
                   </p>
-                  <div className="flex justify-center">
-                    <Link target="_blank" href="https://play.google.com/store/apps/details?id=com.mcmr.store&pcampaignid=web_share" className="inline-flex items-center bg-black text-white rounded-lg px-4 py-2 hover:bg-black/80 transition-colors duration-300">
+                  <div className="flex flex-col gap-3 justify-center">
+                    <Link target="_blank" href="https://play.google.com/store/apps/details?id=com.mcmr.store&pcampaignid=web_share" className="inline-flex items-center justify-center bg-black/90 text-white rounded-lg px-4 py-2 hover:bg-black/80 transition-colors duration-300">
                       <svg viewBox="0 0 24 24" className="w-5 h-5 mr-2" fill="currentColor">
-                        <path d="M17.5,12.5c0-0.91,0.55-1.73,1.4-2.08c-0.25-0.6-0.63-1.16-1.12-1.63c-0.46-0.46-0.95-0.82-1.45-1.06 c-0.43,0.24-1.07,0.35-1.74,0.35c-0.71,0-1.37-0.11-1.83-0.35c-0.37,0.2-0.76,0.48-1.15,0.86c-0.95,0.91-1.69,2.28-1.69,3.9 c0,1.55,0.66,2.93,1.67,3.9c0.41,0.41,0.82,0.68,1.21,0.85c0.45-0.23,1.1-0.35,1.79-0.35c0.72,0,1.38,0.12,1.81,0.35 c0.5-0.25,0.99-0.6,1.45-1.06c0.47-0.47,0.84-1.03,1.08-1.63C18.05,14.23,17.5,13.41,17.5,12.5z M14.8,7.5 c0.65,0,1.18,0.53,1.18,1.18c0,0.65-0.53,1.18-1.18,1.18c-0.65,0-1.18-0.53-1.18-1.18C13.62,8.03,14.15,7.5,14.8,7.5z" />
+                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
                       </svg>
-                      Download Now
+                      Download on Google Play
+                    </Link>
+                    <Link target="_blank" href="https://play.google.com/store/apps/details?id=com.mcmr.store&pcampaignid=web_share" className="inline-flex items-center justify-center bg-black/90 text-white rounded-lg px-4 py-2 hover:bg-black/80 transition-colors duration-300">
+                      <svg viewBox="0 0 24 24" className="w-5 h-5 mr-2" fill="currentColor">
+                        <path d="M18.71,19.5c-.83,1.24-1.71,2.45-3.05,2.47-1.34,0.03-1.77-.79-3.29-.79-1.53,0-2,0.77-3.27,0.82-1.31,0.05-2.3-1.32-3.14-2.53C4.25,17,2.94,12.45,4.7,9.39c0.87-1.52,2.43-2.48,4.12-2.51c1.28-0.02,2.5,0.87,3.29,0.87c0.78,0,2.26-1.08,3.81-.91c0.65,0.03,2.47,0.26,3.64,1.98c-0.09,0.06-2.17,1.28-2.15,3.81c0.03,3.02,2.65,4.03,2.68,4.04-0.03,0.07-0.42,1.44-1.38,2.83M13,7.5c0.03-2,1.17-3.33,2.19-4.19c0.99-0.85,2.1-1.3,2.1-1.3c-1.13,1.72-2.96,2.92-3.29,4.49" />
+                      </svg>
+                      Download on App Store
                     </Link>
                   </div>
                 </div>
@@ -603,19 +816,88 @@ export default function LandingPage() {
 
       </main>
 
-      <div className="fixed bottom-0 right-0 z-50 mb-5 mr-8 ">
-            <HoverCard openDelay={0} closeDelay={200}>
-              <HoverCardTrigger asChild>
-                <Button size="icon" className=" bg-[#EC7508] hover:bg-[#C11805] text-white shadow-lg">
+      <div className="fixed bottom-0 right-0 z-50 mb-5 mr-8">
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          whileHover={{ scale: 1.1 }}
+          className="relative"
+        >
+          <motion.div
+            className="absolute inset-0 rounded-full bg-black/30 blur-xl"
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.5, 0.3],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+          <HoverCard openDelay={0} closeDelay={200}>
+            <HoverCardTrigger asChild>
+              <Button
+                size="icon"
+                className="relative bg-[#EC7508] hover:bg-[#C11805] text-white shadow-[0_0_15px_rgba(0,0,0,0.3)]"
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                <motion.div
+                  animate={{
+                    rotate: [0, 360],
+                  }}
+                  transition={{
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                >
                   <QrCode className="h-16 w-16" />
-                </Button>
-              </HoverCardTrigger>
-              <HoverCardContent side="top" align="end" className="w-fit p-4 bg-white shadow-xl">
-                <QrCode className="h-40 w-40 text-black" />
-              </HoverCardContent>
-            </HoverCard>
-
-          </div>
+                </motion.div>
+              </Button>
+            </HoverCardTrigger>
+            <HoverCardContent
+              side="top"
+              align="end"
+              className="w-fit p-4 bg-white shadow-[0_0_15px_rgba(236,117,8,0.2)] relative overflow-hidden"
+              sideOffset={5}
+            >
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-[#EC7508]/20 via-transparent to-[#EC7508]/20"
+                initial={{ x: "-100%" }}
+                animate={{ x: "100%" }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              />
+              <motion.div
+                className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(236,117,8,0.1)_0%,transparent_70%)]"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              />
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.3 }}
+                className="relative"
+              >
+                <Image
+                  src="/images/qr.png"
+                  alt="QR Code"
+                  width={160}
+                  height={160}
+                  className="rounded-lg"
+                  priority
+                />
+              </motion.div>
+            </HoverCardContent>
+          </HoverCard>
+        </motion.div>
+      </div>
       <footer className="bg-[#1A1A1A] text-[#F2F2F2] py-12">
         <div className="container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
@@ -732,8 +1014,9 @@ export default function LandingPage() {
         </div>
       </footer>
 
-     
+
     </div>
   )
 }
+
 
