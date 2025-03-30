@@ -816,7 +816,7 @@ export default function LandingPage() {
 
       </main>
 
-      <div className="fixed bottom-0 right-0 z-50 mb-5 mr-8">
+      <div className="fixed bottom-0 right-0 z-50 mb-5 mr-8 md:mb-5 md:mr-8 sm:mb-4 sm:mr-4">
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
