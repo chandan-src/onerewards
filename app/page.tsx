@@ -89,43 +89,46 @@ export default function LandingPage() {
         </div>
       </header>
       <main className="flex-1">
-        <section className="relative overflow-hidden bg-gradient-to-r from-[#EC7508] to-[#C11805] min-h-[calc(100vh-4rem)] flex items-center py-16 md:py-0">
+        <section className="relative overflow-hidden bg-gradient-to-r from-[#EC7508] to-[#C11805] min-h-[calc(100vh-4rem)] flex items-center">
           <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10"></div>
-          <div className="container relative">
-            <div className="grid gap-8 md:grid-cols-2 items-center">
-              <motion.div
-                className="space-y-6 text-[#F2F2F2]"
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight tracking-tight">
-                  Boost Customer Loyalty with One Rewards
-                </h1>
-                <p className="text-base md:text-lg lg:text-xl opacity-90">
-                  The complete loyalty rewards platform that helps retail businesses create, manage, and grow customer
-                  loyalty programs that drive repeat business.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                  <Button size="lg" className="bg-white text-[#EC7508] hover:bg-[#F2F2F2] hover:text-[#C11805]">
-                    <Link href="#download">
-                      Get Started Free
-                    </Link>
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </div>
-              </motion.div>
-              <motion.div
-                className="relative flex justify-center"
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                <div className="">
-                  <Image src="/images/main2.png" alt="One Rewards App" width={700} height={700} className="object-contain w-full h-full" priority />
-                </div>
-              </motion.div>
-            </div>
+          <div className="container relative flex flex-col md:flex-row items-center gap-8 py-12 md:py-0 ">
+            <motion.div
+              className="space-y-6 text-[#F2F2F2] md:w-1/2 text-center pt-10 md:text-left px-4 md:px-0 md:pt-0"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight tracking-tight">
+                Boost Customer Loyalty with One Rewards
+              </h1>
+              <p className="text-base md:text-lg lg:text-xl opacity-90">
+                The complete loyalty rewards platform that helps retail businesses create, manage, and grow customer
+                loyalty programs that drive repeat business.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
+                <Button size="lg" className="bg-white text-[#EC7508] hover:bg-[#F2F2F2] hover:text-[#C11805]">
+                  <Link href="#download">
+                    Get Started Free
+                  </Link>
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </div>
+            </motion.div>
+            <motion.div
+              className="relative md:w-1/2 aspect-square max-w-[800px] w-full"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <Image
+                src="/images/main2.png"
+                alt="One Rewards App"
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </motion.div>
           </div>
         </section>
 
@@ -214,7 +217,7 @@ export default function LandingPage() {
         </section>
 
 
-        <section className="py-20 bg-white">
+        <section className="py-10 bg-white">
           <div className="container">
             <div className="grid gap-8 md:grid-cols-2 items-center">
               <motion.div
@@ -224,8 +227,14 @@ export default function LandingPage() {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
-                <div className="">
-                  <Image src="/images/main4.png" alt="One Rewards App" width={700} height={700} className="object-contain w-full h-full " priority />
+                <div className="relative w-full aspect-square max-w-[800px]">
+                  <Image
+                    src="/images/main4.png"
+                    alt="One Rewards App"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
                 </div>
               </motion.div>
               <motion.div
@@ -761,17 +770,11 @@ export default function LandingPage() {
                     Earn rewards at all your favorite stores, track your points, and redeem exclusive offers.
                   </p>
                   <div className="flex flex-col gap-3 justify-center">
-                    <Link target="_blank" href="https://play.google.com/store/apps/details?id=com.mcmr.user&pcampaignid=web_share" className="inline-flex items-center justify-center bg-black/90 text-white rounded-lg px-4 py-2 hover:bg-black/80 transition-colors duration-300">
-                      <svg viewBox="0 0 24 24" className="w-5 h-5 mr-2" fill="currentColor">
-                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
-                      </svg>
-                      Download on Google Play
+                    <Link target="_blank" href="https://play.google.com/store/apps/details?id=com.mcmr.user&pcampaignid=web_share" className="inline-flex items-center justify-center bg-black/90 text-white rounded-lg px-4 py-2">
+                      <Image src="/images/android.png" alt="Google Play" width={130} height={130} />
                     </Link>
-                    <Link target="_blank" href="https://play.google.com/store/apps/details?id=com.mcmr.user&pcampaignid=web_share" className="inline-flex items-center justify-center bg-black/90 text-white rounded-lg px-4 py-2 hover:bg-black/80 transition-colors duration-300">
-                      <svg viewBox="0 0 24 24" className="w-5 h-5 mr-2" fill="currentColor">
-                        <path d="M18.71,19.5c-.83,1.24-1.71,2.45-3.05,2.47-1.34,0.03-1.77-.79-3.29-.79-1.53,0-2,0.77-3.27,0.82-1.31,0.05-2.3-1.32-3.14-2.53C4.25,17,2.94,12.45,4.7,9.39c0.87-1.52,2.43-2.48,4.12-2.51c1.28-0.02,2.5,0.87,3.29,0.87c0.78,0,2.26-1.08,3.81-.91c0.65,0.03,2.47,0.26,3.64,1.98c-0.09,0.06-2.17,1.28-2.15,3.81c0.03,3.02,2.65,4.03,2.68,4.04-0.03,0.07-0.42,1.44-1.38,2.83M13,7.5c0.03-2,1.17-3.33,2.19-4.19c0.99-0.85,2.1-1.3,2.1-1.3c-1.13,1.72-2.96,2.92-3.29,4.49" />
-                      </svg>
-                      Download on App Store
+                    <Link target="_blank" href="https://play.google.com/store/apps/details?id=com.mcmr.user&pcampaignid=web_share" className="inline-flex items-center justify-center bg-black/90 text-white rounded-lg px-4 py-2">
+                      <Image src="/images/ios.png" alt="App Store" width={120} height={120} />
                     </Link>
                   </div>
                 </div>
@@ -795,17 +798,11 @@ export default function LandingPage() {
                     Manage your loyalty program, track customer engagement, and grow your business.
                   </p>
                   <div className="flex flex-col gap-3 justify-center">
-                    <Link target="_blank" href="https://play.google.com/store/apps/details?id=com.mcmr.store&pcampaignid=web_share" className="inline-flex items-center justify-center bg-black/90 text-white rounded-lg px-4 py-2 hover:bg-black/80 transition-colors duration-300">
-                      <svg viewBox="0 0 24 24" className="w-5 h-5 mr-2" fill="currentColor">
-                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
-                      </svg>
-                      Download on Google Play
+                    <Link target="_blank" href="https://play.google.com/store/apps/details?id=com.mcmr.store&pcampaignid=web_share" className="inline-flex items-center justify-center bg-black/90 text-white rounded-lg px-4 py-2">
+                      <Image src="/images/android.png" alt="Google Play" width={130} height={130} />
                     </Link>
-                    <Link target="_blank" href="https://play.google.com/store/apps/details?id=com.mcmr.store&pcampaignid=web_share" className="inline-flex items-center justify-center bg-black/90 text-white rounded-lg px-4 py-2 hover:bg-black/80 transition-colors duration-300">
-                      <svg viewBox="0 0 24 24" className="w-5 h-5 mr-2" fill="currentColor">
-                        <path d="M18.71,19.5c-.83,1.24-1.71,2.45-3.05,2.47-1.34,0.03-1.77-.79-3.29-.79-1.53,0-2,0.77-3.27,0.82-1.31,0.05-2.3-1.32-3.14-2.53C4.25,17,2.94,12.45,4.7,9.39c0.87-1.52,2.43-2.48,4.12-2.51c1.28-0.02,2.5,0.87,3.29,0.87c0.78,0,2.26-1.08,3.81-.91c0.65,0.03,2.47,0.26,3.64,1.98c-0.09,0.06-2.17,1.28-2.15,3.81c0.03,3.02,2.65,4.03,2.68,4.04-0.03,0.07-0.42,1.44-1.38,2.83M13,7.5c0.03-2,1.17-3.33,2.19-4.19c0.99-0.85,2.1-1.3,2.1-1.3c-1.13,1.72-2.96,2.92-3.29,4.49" />
-                      </svg>
-                      Download on App Store
+                    <Link target="_blank" href="https://play.google.com/store/apps/details?id=com.mcmr.store&pcampaignid=web_share" className="inline-flex items-center justify-center bg-black/90 text-white rounded-lg px-4 py-2">
+                      <Image src="/images/ios.png" alt="App Store" width={120} height={120} />
                     </Link>
                   </div>
                 </div>
