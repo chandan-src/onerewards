@@ -1,10 +1,10 @@
 "use client"
-
+import Lenis from 'lenis'
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, CheckCircle, Smartphone, Store, Award, BarChart3, QrCode } from "lucide-react"
 import Autoplay from 'embla-carousel-autoplay'
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
@@ -16,7 +16,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { motion, useInView } from "framer-motion"
+import Spline from "@splinetool/react-spline"
+import { motion, useInView, useMotionValueEvent, useScroll, useTransform } from "framer-motion"
 
 export default function LandingPage() {
   const [isOpen, setIsOpen] = useState(false)
@@ -50,90 +51,27 @@ export default function LandingPage() {
     transition: { duration: 0.6, ease: "easeOut" }
   }
 
+  useEffect(() => {
+    const lenis = new Lenis();
+
+    // Use requestAnimationFrame to continuously update the scroll
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+  }, [])
+
+
   return (
     <div className="flex min-h-screen flex-col scroll-smooth" id="header">
-      <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-        <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Link href="#header">
-              <Image
-                src="/images/logo_black.png"
-                alt="One Rewards Logo"
-                width={120}
-                height={40}
-                className="object-contain"
-                priority
-              />
-            </Link>
-          </div>
-          <nav className="hidden md:flex gap-6">
-            <Link href="#features" className="text-[#1A1A1A] hover:text-[#EC7508] font-medium transition-colors">
-              Features
-            </Link>
-            <Link href="#how-it-works" className="text-[#1A1A1A] hover:text-[#EC7508] font-medium transition-colors">
-              How It Works
-            </Link>
-
-            <Link href="#testimonials" className="text-[#1A1A1A] hover:text-[#EC7508] font-medium transition-colors">
-              Testimonials
-            </Link>
-          </nav>
-          <div className="flex items-center gap-4">
-            <Link href="#download" className=" md:block">
-              <Button variant="outline" className="border-[#EC7508] text-[#EC7508] hover:bg-[#EC7508] hover:text-white">
-                Start Now
-              </Button>
-            </Link>
-          </div>
-
-        </div>
-      </header>
+      <Navbar></Navbar>
       <main className="flex-1">
-        <section className="relative overflow-hidden bg-gradient-to-r from-[#EC7508] to-[#C11805] min-h-[calc(100vh-4rem)] flex items-center">
-          <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10"></div>
-          <div className="container relative flex flex-col md:flex-row items-center gap-8 py-12 md:py-0 ">
-            <motion.div
-              className="space-y-6 text-[#F2F2F2] md:w-1/2 text-center pt-10 md:text-left px-4 md:px-0 md:pt-0"
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight tracking-tight">
-                Boost Customer Loyalty with One Rewards
-              </h1>
-              <p className="text-base md:text-lg lg:text-xl opacity-90">
-                The complete loyalty rewards platform that helps retail businesses create, manage, and grow customer
-                loyalty programs that drive repeat business.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
-                <Button size="lg" className="bg-white text-[#EC7508] hover:bg-[#F2F2F2] hover:text-[#C11805]">
-                  <Link href="#download">
-                    Get Started Free
-                  </Link>
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </div>
-            </motion.div>
-            <motion.div
-              className="relative md:w-1/2 aspect-square max-w-[800px] w-full"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <Image
-                src="/images/main2.png"
-                alt="One Rewards App"
-                fill
-                className="object-cover"
-                priority
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </motion.div>
-          </div>
-        </section>
+        <Hero></Hero>
 
 
-        <section id="features" className="py-20 bg-[#F2F2F2]" ref={ref}>
+        <section id="features" className="relative py-20 bg-[#F2F2F2]" ref={ref}>
           <div className="container">
             <motion.div
               className="text-center mb-16"
@@ -262,72 +200,21 @@ export default function LandingPage() {
           </div>
         </section>
 
-
-        <section id="business-types" className="py-10">
-          <div className="container">
-            <div className="text-center mb-12">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-4">
-                For All Types of Retail Businesses
-              </h2>
-              <p className="text-base md:text-lg text-[#1A1A1A]/70 max-w-3xl mx-auto">
-                One Rewards works with a wide range of retail businesses to help them build customer loyalty.
-              </p>
-            </div>
-
-            <div className="relative">
-              <Carousel
-                opts={{
-                  align: "start",
-                  loop: true,
-                  containScroll: "trimSnaps",
-                  dragFree: false,
-                }}
-                plugins={[
-                  Autoplay({
-                    delay: 1000,
-                    stopOnInteraction: false,
-                    stopOnMouseEnter: true,
-                    rootNode: (emblaRoot) => emblaRoot.parentElement,
-                  }),
-                ]}
-                className="w-full"
-              >
-                <CarouselContent className="-ml-2 md:-ml-4">
-                  {[
-                    { icon: "✂️", name: "Salons & Spas" },
-                    { icon: "🛒", name: "Grocery Stores" },
-                    { icon: "💪", name: "Health & Fitness" },
-                    { icon: "🚗", name: "Rent-a-Car" },
-                    { icon: "👕", name: "Fashion Retail" },
-                    { icon: "🎬", name: "Movie Theaters" },
-                    { icon: "✈️", name: "Airlines" },
-                    { icon: "🍔", name: "Restaurants" },
-                    { icon: "☕", name: "Cafes" },
-                    { icon: "📚", name: "Bookstores" },
-                    { icon: "🏪", name: "Convenience Stores" },
-                    { icon: "💊", name: "Pharmacies" }
-                  ].map((business, index) => (
-                    <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                      <div className="bg-white rounded-xl shadow-md flex flex-col items-center justify-center p-6 hover:shadow-lg transition-shadow border border-[#EC7508]/10 h-[180px]">
-                        <div className="text-4xl mb-4">{business.icon}</div>
-                        <h3 className="text-base md:text-lg font-semibold text-[#1A1A1A]">{business.name}</h3>
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
-              </Carousel>
-            </div>
-          </div>
-        </section>
+        <ListedItems></ListedItems>
 
         <section className="py-20 bg-white">
           <div className="container">
             <div className="text-center mb-16">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-4">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] ">
                 Benefits for Users
               </h2>
+              <div className="flex justify-center items-center">
+                <div className="relative w-[300px] flex justify-center items-center h-[300px]  overflow-hidden">
+                  <Spline
+                    scene="https://prod.spline.design/RfgUeOZDKQxvZk5V/scene.splinecode"
+                  />
+                </div>
+              </div>
               <p className="text-base md:text-lg text-[#1A1A1A]/70 max-w-3xl mx-auto">
                 Discover why thousands of shoppers love using One Rewards
               </p>
@@ -1017,3 +904,256 @@ export default function LandingPage() {
 }
 
 
+function ListedItems() {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+  const x = useTransform(scrollYProgress, [0, 1], ["1%", "-300%"]);
+
+  const items = [{ icon: "✂️", name: "Salons & Spas" },
+  { icon: "🛒", name: "Grocery Stores" },
+  { icon: "💪", name: "Health & Fitness" },
+  { icon: "🚗", name: "Rent-a-Car" },
+  { icon: "👕", name: "Fashion Retail" },
+  { icon: "🎬", name: "Movie Theaters" },
+  { icon: "✈️", name: "Airlines" },
+  { icon: "🍔", name: "Restaurants" },
+  { icon: "☕", name: "Cafes" },
+  { icon: "📚", name: "Bookstores" },
+  { icon: "🏪", name: "Convenience Stores" },
+  { icon: "💊", name: "Pharmacies" }]
+
+  useEffect(() => {
+    const lenis = new Lenis();
+
+    // Use requestAnimationFrame to continuously update the scroll
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+  }, [])
+
+  return (
+    <section id="business-types" className="relative py-10">
+      <div className="container h-[700vh]" ref={containerRef}>
+        <div className="text-center mb-12">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-4">
+            For All Types of Retail Businesses
+          </h2>
+          <p className="text-base md:text-lg text-[#1A1A1A]/70 max-w-3xl mx-auto">
+            One Rewards works with a wide range of retail businesses to help them build customer loyalty.
+          </p>
+        </div>
+        <motion.div style={{ x }} className="sticky h-screen top-0 flex flex-row gap-10 items-center">
+          {items.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 100, x: 100, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, y: 0, x: 0, filter: "blur(0px)" }}
+              viewport={{ once: false }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="flex bg-gray-100 items-center justify-center h-[400px] w-[200px] min-w-[400px] p-4 bg-white/90 rounded-lg shadow-sm"
+            >
+              <div className="text-4xl mr-3">{item.icon}</div>
+              <h3 className="text-base md:text-lg font-semibold text-[#1A1A1A]">{item.name}</h3>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  )
+
+
+}
+
+
+function Hero() {
+  return (
+      <section className="relative top-0 inset-0 overflow-hidden bg-gradient-to-r from-[#EC7508] to-[#C11805] min-h-screen  flex items-center">
+          <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10"></div>
+          <div className="container relative flex flex-col md:flex-row items-center gap-8 py-12 md:py-0 ">
+            <motion.div
+              className="space-y-6 text-[#F2F2F2] md:w-1/2 text-center pt-10 md:text-left px-4 md:px-0 md:pt-0"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight tracking-tight">
+                Boost Customer Loyalty with One Rewards
+              </h1>
+              <p className="text-base md:text-lg lg:text-xl opacity-90">
+                The complete loyalty rewards platform that helps retail businesses create, manage, and grow customer
+                loyalty programs that drive repeat business.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
+                <Button size="lg" className="bg-white text-[#EC7508] hover:bg-[#F2F2F2] hover:text-[#C11805]">
+                  <Link href="#download">
+                    Get Started Free
+                  </Link>
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </div>
+            </motion.div>
+            <motion.div
+              className="relative md:w-1/2 aspect-square max-w-[800px] w-full"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <Image
+                src="/images/main2.png"
+                alt="One Rewards App"
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </motion.div>
+          </div>
+        </section>
+
+  )}
+
+function Navbar() {
+
+  const [isOpen, setIsOpen] = useState(false);
+  const latestref = useRef(0);
+  const { scrollY } = useScroll()
+  useMotionValueEvent(scrollY, "change", (y: number) => {
+    console.log(y, latestref.current)
+    if (Math.abs(y - latestref.current) > 50) {
+      setIsOpen(y - latestref.current > 0);
+      latestref.current = y;
+    }
+  })
+
+
+  return (
+    <motion.header
+    animate={isOpen ? "hidden" : "visible"}
+    whileHover="visible"
+    variants={{
+      hidden: {  y: "-90%" },
+      visible: {  y: "0%" }
+    }}
+    transition={{ duration: 0.5 }}
+
+    className="fixed top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white">
+      <div className="container flex h-16 items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Link href="#header">
+            <Image
+              src="/images/logo_black.png"
+              alt="One Rewards Logo"
+              width={120}
+              height={40}
+              className="object-contain"
+              priority
+            />
+          </Link>
+        </div>
+        <nav className="hidden md:flex gap-6">
+          <Link href="#features" className="text-[#1A1A1A] hover:text-[#EC7508] font-medium transition-colors">
+            Features
+          </Link>
+          <Link href="#how-it-works" className="text-[#1A1A1A] hover:text-[#EC7508] font-medium transition-colors">
+            How It Works
+          </Link>
+
+          <Link href="#testimonials" className="text-[#1A1A1A] hover:text-[#EC7508] font-medium transition-colors">
+            Testimonials
+          </Link>
+          <Link href="/about" className="text-[#1A1A1A] hover:text-[#EC7508] font-medium transition-colors">
+            About Us
+          </Link>
+        </nav>
+        <div className="flex items-center gap-4">
+          <Link href="/contact" className=" md:block">
+            <Button variant="outline" className="border-[#EC7508] text-[#EC7508] hover:bg-[#EC7508] hover:text-white">
+              Contact Us
+            </Button>
+          </Link>
+        </div>
+
+      </div>
+    </motion.header>
+
+  )
+}
+
+
+
+
+
+
+
+
+
+
+
+// function ListedItems() {
+//   return (
+//     <section id="business-types" className="py-10">
+//     <div className="container">
+//       <div className="text-center mb-12">
+//         <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-4">
+//           For All Types of Retail Businesses
+//         </h2>
+//         <p className="text-base md:text-lg text-[#1A1A1A]/70 max-w-3xl mx-auto">
+//           One Rewards works with a wide range of retail businesses to help them build customer loyalty.
+//         </p>
+//       </div>
+
+//       <div className="relative">
+//         <Carousel
+//           opts={{
+//             align: "start",
+//             loop: true,
+//             containScroll: "trimSnaps",
+//             dragFree: false,
+//           }}
+//           plugins={[
+//             Autoplay({
+//               delay: 1000,
+//               stopOnInteraction: false,
+//               stopOnMouseEnter: true,
+//               rootNode: (emblaRoot) => emblaRoot.parentElement,
+//             }),
+//           ]}
+//           className="w-full"
+//         >
+//           <CarouselContent className="-ml-2 md:-ml-4">
+//             {[
+//               { icon: "✂️", name: "Salons & Spas" },
+//               { icon: "🛒", name: "Grocery Stores" },
+//               { icon: "💪", name: "Health & Fitness" },
+//               { icon: "🚗", name: "Rent-a-Car" },
+//               { icon: "👕", name: "Fashion Retail" },
+//               { icon: "🎬", name: "Movie Theaters" },
+//               { icon: "✈️", name: "Airlines" },
+//               { icon: "🍔", name: "Restaurants" },
+//               { icon: "☕", name: "Cafes" },
+//               { icon: "📚", name: "Bookstores" },
+//               { icon: "🏪", name: "Convenience Stores" },
+//               { icon: "💊", name: "Pharmacies" }
+//             ].map((business, index) => (
+//               <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+//                 <div className="bg-white rounded-xl shadow-md flex flex-col items-center justify-center p-6 hover:shadow-lg transition-shadow border border-[#EC7508]/10 h-[180px]">
+//                   <div className="text-4xl mb-4">{business.icon}</div>
+//                   <h3 className="text-base md:text-lg font-semibold text-[#1A1A1A]">{business.name}</h3>
+//                 </div>
+//               </CarouselItem>
+//             ))}
+//           </CarouselContent>
+//           <CarouselPrevious />
+//           <CarouselNext />
+//         </Carousel>
+//       </div>
+//     </div>
+//   </section>
+//   )
+// }

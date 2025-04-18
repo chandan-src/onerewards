@@ -25,6 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={titilliumWeb.className}>
+      
       <body className="overflow-x-hidden">{children}</body>
     </html>
   )
