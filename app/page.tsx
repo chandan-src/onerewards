@@ -217,7 +217,7 @@ export default function LandingPage() {
                 Benefits for Users
               </h2>
               <div className="flex justify-center items-center">
-                <div className="relative w-[700px] flex justify-center items-center h-[400px]">
+                <div className="relative w-full flex justify-center items-center h-[150vh]">
                   <div className="absolute inset-0 z-10">
                     <Spline
                       scene="https://prod.spline.design/RfgUeOZDKQxvZk5V/scene.splinecode"
