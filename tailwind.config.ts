@@ -68,10 +68,28 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        grid: {
+          "0%": {
+            transform: "translateY(0)",
+          },
+          "100%": {
+            transform: "translateY(calc(var(--cell-size) * -1))",
+          },
+        },
+        "grid-pulse": {
+          "0%, 100%": {
+            opacity: "0.4",
+          },
+          "50%": {
+            opacity: "0.8",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "grid": "grid var(--animation-speed) linear infinite",
+        "grid-pulse": "grid-pulse 4s ease-in-out infinite",
       },
     },
   },
