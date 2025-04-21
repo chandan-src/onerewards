@@ -217,10 +217,11 @@ export default function LandingPage() {
                 Benefits for Users
               </h2>
               <div className="flex justify-center items-center">
-                <div className="relative w-full flex justify-center items-center h-[150vh]">
+                <div className="relative w-[600px] flex justify-center items-center h-[700px] object-cover">
                   <div className="absolute inset-0 z-10">
                     <Spline
                       scene="https://prod.spline.design/RfgUeOZDKQxvZk5V/scene.splinecode"
+                      style={{ pointerEvents: 'none' }}
                     />
                   </div>
                   <div className="absolute bottom-0 right-0 w-[180px] h-[70px] bg-white z-20"></div>
@@ -380,7 +381,12 @@ export default function LandingPage() {
                   icon: <BarChart3 className="h-8 w-8 text-white" />
                 }
               ].map((step, index) => (
-                <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-transform hover:scale-105">
+                <motion.div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-transform hover:scale-105"
+                initial={{ opacity: 0, filter: "blur(10px)",  }}
+                whileInView={{ opacity: 1,filter: "blur(0px)" }}
+                transition={{ duration: 0.7}}
+                style={{ y: index*2 }}
+                >
                   <div className="bg-gradient-to-r from-[#EC7508] to-[#C11805] p-4 flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <div className="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center">
@@ -396,7 +402,7 @@ export default function LandingPage() {
                     <h4 className="text-base md:text-lg font-medium mb-3 text-[#1A1A1A]">{step.title}</h4>
                     <p className="text-sm md:text-base text-[#1A1A1A]/70">{step.description}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
 
@@ -1045,7 +1051,11 @@ function ListedItems() {
               className="flex items-center justify-center h-[400px] w-[200px] min-w-[400px] p-4 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-sm bg-white/30 border border-white/20 hover:shadow-[0_8px_30px_rgba(236,117,8,0.3)] transition-all duration-300 group"
             >
               <div className="flex flex-col items-center w-full relative">
-                <div className="overflow-hidden rounded-lg w-full bg-gradient-to-br from-white/40 to-white/10 p-2">
+                <motion.div className="overflow-hidden rounded-lg w-full bg-gradient-to-br from-white/40 to-white/10 p-2"
+                initial={{ opacity: 0, filter: "blur(10px)" }}
+                whileInView={{ opacity: 1, filter: "blur(0px)" }}
+                transition={{ duration: 0.7}}
+                >
                   <Image
                     src={item.url}
                     alt={item.name}
@@ -1054,7 +1064,7 @@ function ListedItems() {
                     loading="lazy"
                     className="object-cover w-full h-[280px] rounded-lg transform group-hover:scale-110 transition-transform duration-500"
                   />
-                </div>
+                </motion.div>
                 <div className="text-center px-4 py-4 backdrop-blur-md bg-white/20 rounded-lg mt-4 w-full border border-white/20">
                   <h3 className="text-lg md:text-xl font-semibold text-[#1A1A1A] group-hover:text-[#EC7508] transition-colors">{item.name}</h3>
                 </div>
@@ -1195,7 +1205,7 @@ function Hero() {
   return (
     <section className="relative top-0 inset-0 overflow-hidden bg-gradient-to-r from-[#EC7508] to-[#C11805] min-h-screen  flex items-center">
       <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10"></div>
-      <div className="container relative flex flex-col md:flex-row items-center gap-8 py-12 md:py-0 ">
+      <div className="container mt-10 relative flex flex-col md:flex-row items-center gap-8 py-12 md:py-0 ">
         <motion.div
           className="relative md:w-1/2 aspect-square max-w-[800px] flex justify-center items-center mx-auto w-full"
           initial={{ opacity: 0, x: 300, filter: "blur(10px), scale(2)" }}
@@ -1218,7 +1228,7 @@ function Hero() {
           className="space-y-6 text-[#F2F2F2] md:w-1/2 pt-10 px-4 flex flex-col justify-center items-center text-center md:px-0 md:pt-0"
           initial={{ opacity: 0, filter: "blur(10px)", scale: 0 }}
           whileInView={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
-          exit={{ opacity: 0, y: -200, filter: "blur(10px), scale(2)" }}
+          exit={{ opacity: 0, y: -200, filter: "blur(10px)", scale: 0 }}
           transition={{ duration: 1, type: "spring", stiffness: 100 }}
           viewport={{ once: false }}
         >
