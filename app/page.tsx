@@ -691,7 +691,7 @@ function Qr() {
             <Button
               size="icon"
               className="relative bg-[#EC7508] hover:bg-[#C11805] text-white shadow-[0_0_15px_rgba(0,0,0,0.3)]"
-              onClick={() => setIsOpen(!isOpen)}
+             
             >
               <motion.div
                 onClick={() => setIsOpen(!isOpen)}
