@@ -290,8 +290,8 @@ export default function LandingPage() {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
+
+
               </Carousel>
             </div>
 
@@ -415,8 +415,7 @@ export default function LandingPage() {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
+
               </Carousel>
             </div>
             <div className="hidden md:grid md:grid-cols-3 gap-8">
@@ -573,8 +572,7 @@ export default function LandingPage() {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
+
               </Carousel>
             </div>
           </div>
@@ -662,8 +660,56 @@ function Howitworks() {
 }
 
 function Qr() {
-
   const [isOpen, setIsOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768) // 768px is the md breakpoint in Tailwind
+    }
+
+    // Check initially
+    checkMobile()
+
+    // Add event listener for window resize
+    window.addEventListener('resize', checkMobile)
+
+    // Cleanup
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  const QrContent = () => (
+    <motion.div
+      initial={{ scale: 0.8, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.3 }}
+      className="relative flex flex-col items-center justify-center space-y-6"
+    >
+      <div className="space-y-2">
+        <Image
+          src="/images/Business.png"
+          alt="QR Code"
+          width={160}
+          height={160}
+          className="rounded-lg"
+          priority
+        />
+        <p className="text-sm text-center text-[#1A1A1A]">Business App</p>
+      </div>
+      <div className="h-[2px] w-full bg-[#EC7508]"></div>
+      <div className="space-y-2">
+        <Image
+          src="/images/OneRewards.png"
+          alt="QR Code"
+          width={160}
+          height={160}
+          className="rounded-lg"
+          priority
+        />
+        <p className="text-sm text-center text-[#1A1A1A]">User App</p>
+      </div>
+    </motion.div>
+  )
 
   return (
     <div className="fixed bottom-0 right-0 z-50 mb-5 mr-8 md:mb-5 md:mr-8 sm:mb-4 sm:mr-4">
@@ -686,80 +732,75 @@ function Qr() {
             ease: "easeInOut",
           }}
         />
-        <HoverCard openDelay={0} closeDelay={200}>
-          <HoverCardTrigger asChild>
-            <Button
-              size="icon"
-              className="relative bg-[#EC7508] hover:bg-[#C11805] text-white shadow-[0_0_15px_rgba(0,0,0,0.3)]"
-                 
+        {isMobile ? (
+          <Dialog open={isOpen} onOpenChange={setIsOpen}>
+            <DialogTrigger asChild>
+              <Button
+                size="icon"
+                className="relative bg-[#EC7508] hover:bg-[#C11805] text-white shadow-[0_0_15px_rgba(0,0,0,0.3)]"
+              >
+                <motion.div
+                  animate={{
+                    rotate: [0, 360],
+                  }}
+                  transition={{
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                >
+                  <QrCode className="h-16 w-16" />
+                </motion.div>
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px] bg-white p-6">
+              <DialogHeader>
+                <DialogTitle className="text-center text-xl font-semibold mb-4">Scan QR Code</DialogTitle>
+              </DialogHeader>
+              <QrContent />
+            </DialogContent>
+          </Dialog>
+        ) : (
+          <HoverCard openDelay={0} closeDelay={200}>
+            <HoverCardTrigger asChild>
+              <Button
+                size="icon"
+                className="relative bg-[#EC7508] hover:bg-[#C11805] text-white shadow-[0_0_15px_rgba(0,0,0,0.3)]"
+              >
+                <motion.div
+                  animate={{
+                    rotate: [0, 360],
+                  }}
+                  transition={{
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                >
+                  <QrCode className="h-16 w-16" />
+                </motion.div>
+              </Button>
+            </HoverCardTrigger>
+            <HoverCardContent
+              side="top"
+              align="end"
+              className="w-fit p-4 bg-white shadow-[0_0_15px_rgba(236,117,8,0.2)] relative overflow-hidden"
+              sideOffset={5}
             >
               <motion.div
-                onClick={() => setIsOpen(!isOpen)}
-                animate={{
-                  rotate: [0, 360],
-                }}
+                className="absolute inset-0 bg-gradient-to-r from-[#EC7508]/20 via-transparent to-[#EC7508]/20"
+                initial={{ x: "-100%" }}
+                animate={{ x: "100%" }}
                 transition={{
-                  duration: 20,
+                  duration: 1.5,
                   repeat: Infinity,
                   ease: "linear",
                 }}
-              >
-                <QrCode className="h-16 w-16" />
-              </motion.div>
-            </Button>
-          </HoverCardTrigger>
-          <HoverCardContent
-            side="top"
-            align="end"
-            className="w-fit p-4 bg-white shadow-[0_0_15px_rgba(236,117,8,0.2)] relative overflow-hidden"
-            sideOffset={5}
-          >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-[#EC7508]/20 via-transparent to-[#EC7508]/20"
-              initial={{ x: "-100%" }}
-              animate={{ x: "100%" }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            />
-            <motion.div
-              className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(236,117,8,0.1)_0%,transparent_70%)]"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            />
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.3 }}
-              className="relative flex flex-col items-center justify-center "
-            >
-              <Image
-                src="/images/Business.png"
-                alt="QR Code"
-                width={160}
-                height={160}
-                className="rounded-lg"
-                priority
               />
-              <p className="text-sm text-[#1A1A1A]">Business App</p>
-              <br />
-              <div className="h-[2px] w-full bg-[#EC7508]"></div>
-              <br />
-              <Image
-                src="/images/OneRewards.png"
-                alt="QR Code"
-                width={160}
-                height={160}
-                className="rounded-lg"
-                priority
-              />
-              <p className="text-sm text-[#1A1A1A]">User App</p>
-            </motion.div>
-          </HoverCardContent>
-        </HoverCard>
+              <QrContent />
+            </HoverCardContent>
+          </HoverCard>
+        )}
       </motion.div>
     </div>
   )
@@ -1142,8 +1183,6 @@ function ListedItems() {
               </motion.div>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
         </Carousel>
       </div>
     </section>
