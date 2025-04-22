@@ -691,7 +691,7 @@ function Qr() {
             <Button
               size="icon"
               className="relative bg-[#EC7508] hover:bg-[#C11805] text-white shadow-[0_0_15px_rgba(0,0,0,0.3)]"
-             
+                 
             >
               <motion.div
                 onClick={() => setIsOpen(!isOpen)}
@@ -1292,7 +1292,7 @@ function Hero() {
               src="/images/leftmock.png"
               alt="One Rewards App"
               width={280}
-              height={200}
+              height={300}
               className="object-cover"
               priority
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -1337,7 +1337,7 @@ function Hero() {
                     variants={{
                       hidden: { y: 0 },
                       hover: { y: "-100%" },
-                      view : { y:"-100%" }
+                      view: { y: "-100%" }
                     }}
                     transition={{ delay: index * 0.1 }}
                     key={index}>{char}</motion.span>
@@ -1420,7 +1420,7 @@ function EarnRewards() {
             height={100}
             className="w-full h-full object-cover brightness-75"
           />
-          <h1 className="absolute z-20 text-6xl font-bold backdrop-blur-sm bg-white/10 px-8 py-4 rounded-xl border border-white/20 shadow-xl text-white/70 tracking-wide text-center">Make Every Purchase Count</h1>
+          <h1 className="absolute z-20 text-3xl font-bold backdrop-blur-sm bg-white/10 px-8 py-4 rounded-xl border border-white/20 shadow-xl text-white/70 tracking-wide text-center">Make Every Purchase Count</h1>
         </div>
         <div ref={ref} className="absolute top-0 left-0 w-full h-full z-10">
           <div className="bg-orange-700 w-screen h-screen z-10 flex items-center justify-center">
