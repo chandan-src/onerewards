@@ -888,16 +888,16 @@ function ListedItems() {
   return (
     <section id="business-types" className="relative py-10">
       <div className=" container h-[700vh] hidden md:block" ref={containerRef} >
-       
+
         <div className="sticky h-screen top-0 pt-20">
-        <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-4">
-            For All Types of Retail Businesses
-          </h2>
-          <p className="text-base md:text-lg text-[#1A1A1A]/70 max-w-3xl mx-auto">
-            One Rewards works with a wide range of retail businesses to help them build customer loyalty.
-          </p>
-        </div>
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-4">
+              For All Types of Retail Businesses
+            </h2>
+            <p className="text-base md:text-lg text-[#1A1A1A]/70 max-w-3xl mx-auto">
+              One Rewards works with a wide range of retail businesses to help them build customer loyalty.
+            </p>
+          </div>
           <motion.div style={{ x }} className=" flex flex-row gap-10 items-center">
 
             {items.map((item, index) => (
@@ -927,7 +927,7 @@ function ListedItems() {
         </div>
       </div>
       <div className="md:hidden">
-      <div className="text-center mb-12 py-10">
+        <div className="text-center mb-12 py-10">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-4">
             For All Types of Retail Businesses
           </h2>
@@ -937,38 +937,41 @@ function ListedItems() {
         </div>
         <Carousel
           opts={{
-            align: "start",
+            align: "center",
             loop: true,
             containScroll: "trimSnaps",
           }}
           className="w-full"
         >
-          <CarouselContent className="">
+          <CarouselContent className="-ml-2 md:-ml-4">
             {items.map((item, index) => (
-              <motion.div
-                key={index}
-                className="flex items-center justify-center h-[400px] w-[200px] min-w-[400px] p-4 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-sm bg-white/30 border border-white/20 hover:shadow-[0_8px_30px_rgba(236,117,8,0.3)] transition-all duration-300 group"
-              >
-                <div className="flex flex-col items-center w-full relative">
-                  <motion.div className="overflow-hidden rounded-lg w-full bg-gradient-to-br from-white/40 to-white/10 p-2"
-
-                  >
-                    <Image
-                      src={item.url}
-                      alt={item.name}
-                      width={400}
-                      height={300}
-                      loading="lazy"
-                      className="object-cover w-full h-[280px] rounded-lg transform group-hover:scale-110 transition-transform duration-500"
-                    />
-                  </motion.div>
-                  <div className="text-center px-4 py-4 backdrop-blur-md bg-white/20 rounded-lg mt-4 w-full border border-white/20">
-                    <h3 className="text-lg md:text-xl font-semibold text-[#1A1A1A] group-hover:text-[#EC7508] transition-colors">{item.name}</h3>
+              <CarouselItem key={index} className="pl-2 md:pl-4 flex justify-center">
+                <motion.div
+                  className="flex items-center justify-center h-[300px] w-full max-w-[350px] p-4 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-sm bg-white/30 border border-white/20 hover:shadow-[0_8px_30px_rgba(236,117,8,0.3)] transition-all duration-300 group"
+                >
+                  <div className="flex flex-col items-center w-full relative">
+                    <motion.div className="overflow-hidden rounded-lg w-full bg-gradient-to-br from-white/40 to-white/10 p-2">
+                      <Image
+                        src={item.url}
+                        alt={item.name}
+                        width={400}
+                        height={300}
+                        loading="lazy"
+                        className="object-cover w-full h-[200px] rounded-lg transform group-hover:scale-110 transition-transform duration-500"
+                      />
+                    </motion.div>
+                    <div className="text-center px-4 py-4 backdrop-blur-md bg-white/20 rounded-lg mt-4 w-full border border-white/20">
+                      <h3 className="text-lg md:text-xl font-semibold text-[#1A1A1A] group-hover:text-[#EC7508] transition-colors">{item.name}</h3>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </CarouselItem>
             ))}
           </CarouselContent>
+          <div className="flex justify-center mt-4">
+            <CarouselPrevious className="relative static translate-y-0 left-0" />
+            <CarouselNext className="relative static translate-y-0 right-0" />
+          </div>
         </Carousel>
       </div>
     </section>
@@ -1312,7 +1315,7 @@ function FadeContent() {
 
 function AboutPage() {
   return (
-    <div id="about" className="flex min-h-screen flex-col">
+    <div id="about" className="flex min-h-screen overflow-x-hidden flex-col">
       <main className="flex-1">
         <section className="relative overflow-hidden py-20 md:py-32">
           <div className="absolute inset-0  opacity-10"></div>
