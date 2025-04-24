@@ -968,10 +968,7 @@ function ListedItems() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <div className="flex justify-center mt-4">
-            <CarouselPrevious className="relative static translate-y-0 left-0" />
-            <CarouselNext className="relative static translate-y-0 right-0" />
-          </div>
+        
         </Carousel>
       </div>
     </section>
