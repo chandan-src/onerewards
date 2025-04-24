@@ -65,7 +65,7 @@ export default function LandingPage() {
 
 
   return (
-    <div className="flex min-h-screen flex-col scroll-smooth overflow-x-hidden" id="header">
+    <div className="flex min-h-screen flex-col scroll-smooth" id="header">
       <Navbar></Navbar>
       <main className="flex-1">
         <Hero></Hero>
@@ -927,7 +927,7 @@ function ListedItems() {
         </div>
       </div>
       <div className="md:hidden">
-      <div className="text-center mb-12 px-10">
+      <div className="text-center mb-12 py-10">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-4">
             For All Types of Retail Businesses
           </h2>
