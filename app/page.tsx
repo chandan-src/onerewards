@@ -69,101 +69,23 @@ export default function LandingPage() {
       <Navbar></Navbar>
       <main className="flex-1">
         <Hero></Hero>
+        <AboutPage></AboutPage>
+
         <Customers></Customers>
+        <Benefitusers></Benefitusers>
 
 
-        <section id="features" className="relative py-20 bg-[#F2F2F2]" ref={ref}>
-          <div className="container">
-            <motion.div
-              className="text-center mb-16"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5 }}
-            >
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-4">
-                Everything You Need to Build Customer Loyalty
-              </h2>
-              <p className="text-base md:text-lg text-[#1A1A1A]/70 max-w-3xl mx-auto">
-                One Rewards provides all the tools retail businesses need to create, manage, and grow successful loyalty
-                programs.
-              </p>
-            </motion.div>
-            <motion.div
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-              variants={staggerContainer}
-              initial="initial"
-              animate={isInView ? "animate" : "initial"}
-            >
-              {[
-                {
-                  icon: <Smartphone className="h-10 w-10 text-[#EC7508]" />,
-                  title: "Mobile App Integration",
-                  description: "Seamlessly integrate with your existing mobile app or use our white-label solution.",
-                },
-                {
-                  icon: <Store className="h-10 w-10 text-[#EC7508]" />,
-                  title: "In-Store & Online Rewards",
-                  description: "Create unified loyalty experiences across all your sales channels.",
-                },
-                {
-                  icon: <Award className="h-10 w-10 text-[#EC7508]" />,
-                  title: "Customizable Rewards",
-                  description: "Design rewards that align with your brand and resonate with your customers.",
-                },
-                {
-                  icon: <BarChart3 className="h-10 w-10 text-[#EC7508]" />,
-                  title: "Analytics Dashboard",
-                  description: "Track program performance and customer engagement with detailed insights.",
-                },
-                {
-                  icon: <CheckCircle className="h-10 w-10 text-[#EC7508]" />,
-                  title: "Easy Implementation",
-                  description: "Get up and running quickly with our simple setup process and integration options.",
-                },
-                {
-                  icon: <ArrowRight className="h-10 w-10 text-[#EC7508]" />,
-                  title: "Customer Segmentation",
-                  description: "Target specific customer groups with personalized rewards and incentives.",
-                },
-              ].map((feature, index) => (
-                <motion.div
-                  key={index}
-                  variants={fadeInUp}
-                  initial={{ opacity: 0, y: 100, filter: "blur(100px), scale(2)" }}
-                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px), scale(1)" }}
-                  exit={{ opacity: 0, y: -100, filter: "blur(10px), scale(2)" }}
-                  transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
-                  viewport={{ once: false }}
-                >
-                  <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
-                    <CardContent className="p-6">
-                      <div className="mb-4">{feature.icon}</div>
-                      <h3 className="text-lg md:text-xl font-medium mb-2 text-[#1A1A1A]">{feature.title}</h3>
-                      <p className="text-sm md:text-base text-[#1A1A1A]/70">{feature.description}</p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </motion.div>
-            <motion.div
-              className="mt-12 text-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <Button className="bg-gradient-to-r from-[#EC7508] to-[#C11805] hover:opacity-90 text-white">
-                <Link href="#download">
-                  Explore Now
-                </Link>
-              </Button>
-            </motion.div>
-          </div>
-        </section>
+
 
         <EarnRewards></EarnRewards>
-
+        {/* <CustomerLoyalty></CustomerLoyalty> */}
         <section className="py-10 bg-white">
           <div className="container">
+            <div className="flex justify-center items-center mt-10">
+              <Image src="/images/full_business.png" className=" mb-10" alt="About" width={500} height={500} />
+            </div>
+            <br />
+
             <div className="grid gap-8 md:grid-cols-2 items-center">
               <motion.div
                 className="relative flex justify-center"
@@ -207,152 +129,18 @@ export default function LandingPage() {
           </div>
         </section>
 
+
+
         <ListedItems></ListedItems>
 
-        <section className="py-20 bg-white">
-          <div className="container">
-            <div className="text-center mb-16">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl mb-5 font-medium text-[#1A1A1A] ">
-                Benefits for Users
-              </h2>
-              <div className="flex justify-center hidden md:flex items-center">
-                <div className="relative w-[600px] flex justify-center items-center h-[700px] object-cover">
-                  <div className="absolute inset-0 z-10">
-                    <Spline
-                      scene="https://prod.spline.design/RfgUeOZDKQxvZk5V/scene.splinecode"
-                      style={{ pointerEvents: 'none' }}
-                    />
-                  </div>
-                  <div className="absolute bottom-0 right-0 w-[180px] h-[70px] bg-white z-20"></div>
-                </div>
-              </div>
-              <p className="text-base md:text-lg text-[#1A1A1A]/70 max-w-3xl mx-auto">
-                Discover why thousands of shoppers love using One Rewards
-              </p>
-            </div>
 
-            <div className="md:hidden">
-              <Carousel
-                opts={{
-                  align: "start",
-                  loop: true,
-                  containScroll: "trimSnaps",
-                }}
-                plugins={[
-                  Autoplay({
-                    delay: 1000,
-                    stopOnInteraction: false,
-                    stopOnMouseEnter: true,
-                    rootNode: (emblaRoot) => emblaRoot.parentElement,
-                  }),
-                ]}
-                className="w-full"
-              >
-                <CarouselContent className="-ml-2 md:-ml-4">
-                  {[
-                    {
-                      icon: "🎁",
-                      title: "Earn Rewards Everywhere",
-                      description: "Collect points and earn rewards at all your favorite stores with a single app."
-                    },
-                    {
-                      icon: "💰",
-                      title: "Save Money",
-                      description: "Get exclusive discounts, special offers, and personalized deals based on your shopping habits."
-                    },
-                    {
-                      icon: "🔔",
-                      title: "Instant Notifications",
-                      description: "Receive alerts about new rewards, point balances, and nearby participating businesses."
-                    },
-                    {
-                      icon: "📱",
-                      title: "Easy to Use",
-                      description: "Simple, intuitive interface makes it easy to track and redeem your rewards."
-                    },
-                    {
-                      icon: "🔒",
-                      title: "Secure & Private",
-                      description: "Your data is protected with bank-level security and privacy controls."
-                    },
-                    {
-                      icon: "🌟",
-                      title: "VIP Experiences",
-                      description: "Unlock exclusive experiences and premium rewards as you earn more points."
-                    }
-                  ].map((benefit, index) => (
-                    <CarouselItem key={index} className="pl-2 md:pl-4 basis-full">
-                      <div className="bg-[#F2F2F2] rounded-xl p-6 hover:shadow-lg transition-all hover:-translate-y-1">
-                        <div className="text-4xl mb-4">{benefit.icon}</div>
-                        <h3 className="text-lg md:text-xl font-medium mb-2 text-[#1A1A1A]">{benefit.title}</h3>
-                        <p className="text-sm md:text-base text-[#1A1A1A]/70">{benefit.description}</p>
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
+        {/* <Howitworks></Howitworks>
+        <FadeContent></FadeContent> */}
 
-
-              </Carousel>
-            </div>
-
-            <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                {
-                  icon: "🎁",
-                  title: "Earn Rewards Everywhere",
-                  description: "Collect points and earn rewards at all your favorite stores with a single app."
-                },
-                {
-                  icon: "💰",
-                  title: "Save Money",
-                  description: "Get exclusive discounts, special offers, and personalized deals based on your shopping habits."
-                },
-                {
-                  icon: "🔔",
-                  title: "Instant Notifications",
-                  description: "Receive alerts about new rewards, point balances, and nearby participating businesses."
-                },
-                {
-                  icon: "📱",
-                  title: "Easy to Use",
-                  description: "Simple, intuitive interface makes it easy to track and redeem your rewards."
-                },
-                {
-                  icon: "🔒",
-                  title: "Secure & Private",
-                  description: "Your data is protected with bank-level security and privacy controls."
-                },
-                {
-                  icon: "🌟",
-                  title: "VIP Experiences",
-                  description: "Unlock exclusive experiences and premium rewards as you earn more points."
-                }
-              ].map((benefit, index) => (
-                <div key={index} className="bg-[#F2F2F2] rounded-xl p-6 hover:shadow-lg transition-all hover:-translate-y-1">
-                  <div className="text-4xl mb-4">{benefit.icon}</div>
-                  <h3 className="text-lg md:text-xl font-medium mb-2 text-[#1A1A1A]">{benefit.title}</h3>
-                  <p className="text-sm md:text-base text-[#1A1A1A]/70">{benefit.description}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-12 text-center">
-              <Button className="bg-gradient-to-r from-[#EC7508] to-[#C11805] hover:opacity-90 text-white">
-                <Link href="#download">
-                  Start Earning Rewards
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </section>
-
-
-        <Howitworks></Howitworks>
-
-        <section id="testimonials" className="pb-20 bg-[#F2F2F2]">
-          <div className="container">
+        {/* <section id="testimonials" className="pb-20 bg-[#F2F2F2]">
+          <div className="container py-20">
             <motion.div
-              className="text-center mb-12"
+              className="text-center mb-20"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -457,10 +245,10 @@ export default function LandingPage() {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
 
 
-        <section className="py-20 bg-gradient-to-r from-[#EC7508] to-[#C11805] text-white">
+        {/* <section className="py-20 bg-gradient-to-r from-[#EC7508] to-[#C11805] text-white">
           <div className="container">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
@@ -497,7 +285,8 @@ export default function LandingPage() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
+
 
         <section className="py-20 bg-white">
           <div className="container">
@@ -1238,7 +1027,7 @@ function Navbar() {
           <Link href="#testimonials" className="text-[#1A1A1A] hover:text-[#EC7508] font-medium transition-colors">
             Testimonials
           </Link>
-          <Link href="/about" className="text-[#1A1A1A] hover:text-[#EC7508] font-medium transition-colors">
+          <Link href="#about" className="text-[#1A1A1A] hover:text-[#EC7508] font-medium transition-colors">
             About Us
           </Link>
         </nav>
@@ -1258,8 +1047,12 @@ function Navbar() {
 
 function Customers() {
   return (
-    <section id="customers" className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
-      <div className="absolute inset-0">
+    <section id="customers" className="relative min-h-screen flex flex-col mb-10 items-center justify-center overflow-hidden">
+      <div className="flex justify-center items-center relative">
+        <Image src="/images/logo_black.png" className="mt-20 mb-20" alt="About" width={500} height={500} />
+      </div>
+
+      <div className="absolute inset-0 py-20">
         <RetroGrid
           angle={45}
           cellSize={40}
@@ -1271,7 +1064,6 @@ function Customers() {
       </div>
       <div className="container relative">
         {/* Left floating coins */}
-
 
         <div className="text-center max-w-4xl mx-auto space-y-20">
           <motion.h2
@@ -1336,9 +1128,9 @@ function Hero() {
               priority
               sizes="(max-width: 768px) 100vw, 50vw"
             />
-            <h1 className="text-2xl text-white md:text-3xl lg:text-4xl flex justify-center items-center font-medium text-[#1A1A1A] mb-6">
-              User App
-            </h1>
+            <div className="flex justify-center items-center ">
+              <Image src="/images/logo_black.png" className="bg-white rounded-md p-2" alt="About" width={100} height={100} />
+            </div>
           </div>
           <div className="md:hidden">
             <Image
@@ -1350,13 +1142,13 @@ function Hero() {
               priority
               sizes="(max-width: 768px) 100vw, 50vw object-cover"
             />
-            <h1 className="text-2xl flex text-white justify-center items-center md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-6">
-              Business App
-            </h1>
+            <div className="flex justify-center items-center ">
+              <Image src="/images/full_business.png" className="bg-white rounded-md p-2" alt="About" width={120} height={100} />
+            </div>
           </div>
         </motion.div>
         <motion.div
-          className="space-y-6 text-[#F2F2F2] md:w-1/2 md:pt-10 pt-0 px-4 flex flex-col justify-center items-center text-center md:px-0 md:pt-0"
+          className="space-y-3 text-[#F2F2F2] md:w-1/2 md:pt-10 pt-0 px-4 flex flex-col justify-center items-center text-center md:px-0 md:pt-0"
           initial={{ opacity: 0, filter: "blur(10px)", scale: 0 }}
           whileInView={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
           exit={{ opacity: 0, y: -200, filter: "blur(10px)", scale: 0 }}
@@ -1398,7 +1190,10 @@ function Hero() {
               })}
             </div>
           </motion.div>
-          <p className="text-base md:text-lg lg:text-xl opacity-90 text-center">
+          <h1 className="text-2xl text-white md:text-3xl lg:text-4xl flex justify-center items-center font-medium text-[#1A1A1A]">
+            Endless Rewards
+          </h1>
+          <p className="text-base font-light  opacity-90 text-center ">
             The complete loyalty rewards platform that helps retail businesses create, manage, and grow customer
             loyalty programs that drive repeat business.
           </p>
@@ -1428,9 +1223,9 @@ function Hero() {
             priority
             sizes="(max-width: 768px) 100vw, 50vw object-cover"
           />
-          <h1 className="text-2xl flex justify-center items-center text-white md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-6">
-            Business App
-          </h1>
+          <div className="flex justify-center items-center ">
+            <Image src="/images/full_business.png" className="bg-white rounded-md p-2" alt="About" width={120} height={100} />
+          </div>
         </motion.div>
       </div>
     </section>
@@ -1453,7 +1248,7 @@ function EarnRewards() {
 
         <div className="sticky top-0 h-screen flex items-center justify-center">
           <Image
-            src="/images/cards/earning.jpeg"
+            src="/images/bgrewards.webp"
             alt="Rewards Background"
             width={100}
             height={100}
@@ -1462,12 +1257,12 @@ function EarnRewards() {
           <h1 className="absolute z-20 text-3xl font-bold backdrop-blur-sm bg-white/10 px-8 py-4 rounded-xl border border-white/20 shadow-xl text-white/70 tracking-wide text-center">Make Every Purchase Count</h1>
         </div>
         <div ref={ref} className="absolute top-0 left-0 w-full h-full z-10">
-          <div className="bg-orange-700 w-screen h-screen z-10 flex items-center justify-center">
+          <div className="bg-[#F2F2F2] w-screen h-screen z-10 flex items-center justify-center">
             <motion.h1
               className="text-[20vw] font-black uppercase leading-none text-center"
               style={{
 
-                background: `url('/images/cards/earning.jpeg') center center / cover no-repeat fixed`,
+                background: `url('/images/bgrewards.webp') center center / cover no-repeat fixed`,
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
                 color: 'transparent',
@@ -1484,10 +1279,386 @@ function EarnRewards() {
 }
 
 
+function FadeContent() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end end"]
+  });
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 7]);
+  return (
+    <div>
+      <div className="h-[100vh] relative flex items-center mx-auto">
+        <div ref={ref} className="absolute top-0 left-0 w-full h-full z-10 flex items-center justify-center">
+          <div className="bg-black w-screen h-screen z-10 flex items-center justify-center">
+            <motion.h1
+              className="text-[60px] md:text-[130px] font-black uppercase leading-none text-center"
+              style={{
+                background: `url('/images/fade.png') center center / cover no-repeat fixed`,
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                color: 'transparent',
+                WebkitTextStroke: '1px rgba(255,255,255,0.1)'
+              }}
+            >
+              <span className="block">TURNING</span>
+              <span className="block">TRANSACTIONS</span>
+              <span className="block">INTO</span>
+              <span className="block">TREASURES</span>
+            </motion.h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 
 
 
+function AboutPage() {
+  return (
+    <div id="about" className="flex min-h-screen flex-col">
+      <main className="flex-1">
+        <section className="relative overflow-hidden py-20 md:py-32">
+          <div className="absolute inset-0  opacity-10"></div>
+          <div className="container relative">
+            <div className="max-w-3xl mx-auto text-center text-black">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6">About One Rewards</h1>
+              <p className="text-lg md:text-xl opacity-90">
+                Transforming customer loyalty programs for retail businesses worldwide. We're on a mission to help businesses
+                build stronger relationships with their customers through innovative rewards solutions.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20  bg-gradient-to-r from-[#EC7508] to-[#C11805]">
+          <div className="container ">
+            <div className="">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Our Story</h2>
+                <p className="text-lg text-white mb-6">
+                  Founded in 2023, One Rewards emerged from a simple observation: traditional loyalty programs weren't
+                  meeting the needs of modern retail businesses and their customers. We set out to create a solution that
+                  would make loyalty programs more accessible, engaging, and effective.
+                </p>
+                <p className="text-lg text-white mb-8">
+                  Today, we're proud to serve thousands of businesses across various industries, helping them build
+                  meaningful relationships with their customers through innovative rewards solutions.
+                </p>
+                <Button className="text-[#EC7508] bg-white">
+                  Join Our Journey
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20 bg-[#F2F2F2]">
+          <div className="container">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#1A1A1A] mb-4">Our Mission</h2>
+              <p className="text-lg text-[#1A1A1A]/70 max-w-3xl mx-auto">
+                To empower retail businesses with innovative loyalty solutions that drive customer engagement and business
+                growth.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                {
+                  title: "Innovation",
+                  description: "We constantly push the boundaries of what's possible in customer loyalty programs.",
+                },
+                {
+                  title: "Customer Success",
+                  description: "Your success is our success. We're committed to helping you achieve your business goals.",
+                },
+                {
+                  title: "Integrity",
+                  description: "We operate with transparency and honesty in all our business dealings.",
+                },
+              ].map((value, index) => (
+                <Card key={index} className="border-none shadow-lg">
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-bold mb-3 text-[#1A1A1A]">{value.title}</h3>
+                    <p className="text-[#1A1A1A]/70">{value.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+
+      </main>
+    </div>
+  )
+}
 
 
 
+function Benefitusers() {
+  return (
+    <section className="py-20 bg-white">
+      <div className="container">
+        <div className="text-center mb-16">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-5 font-medium text-[#1A1A1A] ">
+            Benefits for Users
+          </h2>
+          <div className="flex justify-center hidden md:flex items-center">
+            <div className="relative w-[600px] flex justify-center items-center h-[500px] object-cover">
+              <div className="absolute inset-0 z-10">
+                <Spline
+                  scene="https://prod.spline.design/RfgUeOZDKQxvZk5V/scene.splinecode"
+                  style={{ pointerEvents: 'none' }}
+                />
+              </div>
+              <div className="absolute bottom-0 right-0 w-[180px] h-[70px] bg-white z-20"></div>
+            </div>
+          </div>
+          <p className="text-base md:text-lg text-[#1A1A1A]/70 max-w-3xl mx-auto">
+            Discover why thousands of shoppers love using One Rewards
+          </p>
+        </div>
+
+        <div className="md:hidden">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+              containScroll: "trimSnaps",
+            }}
+            plugins={[
+              Autoplay({
+                delay: 1000,
+                stopOnInteraction: false,
+                stopOnMouseEnter: true,
+                rootNode: (emblaRoot) => emblaRoot.parentElement,
+              }),
+            ]}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {[
+                {
+                  icon: "🎁",
+                  title: "Earn Rewards Everywhere",
+                  description: "Collect points and earn rewards at all your favorite stores with a single app."
+                },
+                {
+                  icon: "💰",
+                  title: "Save Money",
+                  description: "Get exclusive discounts, special offers, and personalized deals based on your shopping habits."
+                },
+                {
+                  icon: "🔔",
+                  title: "Instant Notifications",
+                  description: "Receive alerts about new rewards, point balances, and nearby participating businesses."
+                },
+                {
+                  icon: "📱",
+                  title: "Easy to Use",
+                  description: "Simple, intuitive interface makes it easy to track and redeem your rewards."
+                },
+                {
+                  icon: "🔒",
+                  title: "Secure & Private",
+                  description: "Your data is protected with bank-level security and privacy controls."
+                },
+                {
+                  icon: "🌟",
+                  title: "VIP Experiences",
+                  description: "Unlock exclusive experiences and premium rewards as you earn more points."
+                }
+              ].map((benefit, index) => (
+                <CarouselItem key={index} className="pl-2 md:pl-4 basis-full">
+                  <div className="bg-[#F2F2F2] rounded-xl p-6 hover:shadow-lg transition-all hover:-translate-y-1">
+                    <div className="text-4xl mb-4">{benefit.icon}</div>
+                    <h3 className="text-lg md:text-xl font-medium mb-2 text-[#1A1A1A]">{benefit.title}</h3>
+                    <p className="text-sm md:text-base text-[#1A1A1A]/70">{benefit.description}</p>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+
+
+          </Carousel>
+        </div>
+
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {[
+            {
+              icon: "🎁",
+              title: "Earn Rewards Everywhere",
+              description: "Collect points and earn rewards at all your favorite stores with a single app."
+            },
+            {
+              icon: "💰",
+              title: "Save Money",
+              description: "Get exclusive discounts, special offers, and personalized deals based on your shopping habits."
+            },
+            {
+              icon: "🔔",
+              title: "Instant Notifications",
+              description: "Receive alerts about new rewards, point balances, and nearby participating businesses."
+            },
+            {
+              icon: "📱",
+              title: "Easy to Use",
+              description: "Simple, intuitive interface makes it easy to track and redeem your rewards."
+            },
+            {
+              icon: "🔒",
+              title: "Secure & Private",
+              description: "Your data is protected with bank-level security and privacy controls."
+            },
+            {
+              icon: "🌟",
+              title: "VIP Experiences",
+              description: "Unlock exclusive experiences and premium rewards as you earn more points."
+            }
+          ].map((benefit, index) => (
+            <div key={index} className="bg-[#F2F2F2] rounded-xl p-6 hover:shadow-lg transition-all hover:-translate-y-1">
+              <div className="text-4xl mb-4">{benefit.icon}</div>
+              <h3 className="text-lg md:text-xl font-medium mb-2 text-[#1A1A1A]">{benefit.title}</h3>
+              <p className="text-sm md:text-base text-[#1A1A1A]/70">{benefit.description}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <Button className="bg-gradient-to-r from-[#EC7508] to-[#C11805] hover:opacity-90 text-white">
+            <Link href="#download">
+              Start Earning Rewards
+            </Link>
+          </Button>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+
+function CustomerLoyalty() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
+
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+
+  const staggerContainer = {
+    animate: {
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.1
+      }
+    }
+  }
+
+  const scaleIn = {
+    initial: { opacity: 0, scale: 0.9 },
+    animate: { opacity: 1, scale: 1 },
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+
+  const slideIn = {
+    initial: { opacity: 0, x: -30 },
+    animate: { opacity: 1, x: 0 },
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+
+  return (
+    <section id="features" className="relative py-20 bg-[#F2F2F2]" ref={ref}>
+      <div className="container">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-4">
+            Everything You Need to Build Customer Loyalty
+          </h2>
+          <p className="text-base md:text-lg text-[#1A1A1A]/70 max-w-3xl mx-auto">
+            One Rewards provides all the tools retail businesses need to create, manage, and grow successful loyalty
+            programs.
+          </p>
+        </motion.div>
+        <motion.div
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={staggerContainer}
+          initial="initial"
+          animate={isInView ? "animate" : "initial"}
+        >
+          {[
+            {
+              icon: <Smartphone className="h-10 w-10 text-[#EC7508]" />,
+              title: "Mobile App Integration",
+              description: "Seamlessly integrate with your existing mobile app or use our white-label solution.",
+            },
+            {
+              icon: <Store className="h-10 w-10 text-[#EC7508]" />,
+              title: "In-Store & Online Rewards",
+              description: "Create unified loyalty experiences across all your sales channels.",
+            },
+            {
+              icon: <Award className="h-10 w-10 text-[#EC7508]" />,
+              title: "Customizable Rewards",
+              description: "Design rewards that align with your brand and resonate with your customers.",
+            },
+            {
+              icon: <BarChart3 className="h-10 w-10 text-[#EC7508]" />,
+              title: "Analytics Dashboard",
+              description: "Track program performance and customer engagement with detailed insights.",
+            },
+            {
+              icon: <CheckCircle className="h-10 w-10 text-[#EC7508]" />,
+              title: "Easy Implementation",
+              description: "Get up and running quickly with our simple setup process and integration options.",
+            },
+            {
+              icon: <ArrowRight className="h-10 w-10 text-[#EC7508]" />,
+              title: "Customer Segmentation",
+              description: "Target specific customer groups with personalized rewards and incentives.",
+            },
+          ].map((feature, index) => (
+            <motion.div
+              key={index}
+              variants={fadeInUp}
+              initial={{ opacity: 0, y: 100, filter: "blur(100px), scale(2)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px), scale(1)" }}
+              exit={{ opacity: 0, y: -100, filter: "blur(10px), scale(2)" }}
+              transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
+              viewport={{ once: false }}
+            >
+              <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
+                <CardContent className="p-6">
+                  <div className="mb-4">{feature.icon}</div>
+                  <h3 className="text-lg md:text-xl font-medium mb-2 text-[#1A1A1A]">{feature.title}</h3>
+                  <p className="text-sm md:text-base text-[#1A1A1A]/70">{feature.description}</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
+        <motion.div
+          className="mt-12 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <Button className="bg-gradient-to-r from-[#EC7508] to-[#C11805] hover:opacity-90 text-white">
+            <Link href="#download">
+              Explore Now
+            </Link>
+          </Button>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
