@@ -474,7 +474,7 @@ function Qr() {
       transition={{ duration: 0.3 }}
       className="relative flex flex-col items-center justify-center space-y-6"
     >
-      <div className="space-y-2">
+      <div className="space-y-2 flex flex-col justify-center items-center">
         <Image
           src="/images/Business.png"
           alt="QR Code"
@@ -483,10 +483,16 @@ function Qr() {
           className="rounded-lg"
           priority
         />
-        <p className="text-sm text-center text-[#1A1A1A]">Business App</p>
+        <Image
+          src="/images/mini_business.png"
+          alt="QR Code"
+          width={50}
+          height={160}
+          className="rounded-lg"
+        />
       </div>
       <div className="h-[2px] w-full bg-[#EC7508]"></div>
-      <div className="space-y-2">
+      <div className="space-y-2 flex flex-col justify-center items-center">
         <Image
           src="/images/OneRewards.png"
           alt="QR Code"
@@ -495,13 +501,19 @@ function Qr() {
           className="rounded-lg"
           priority
         />
-        <p className="text-sm text-center text-[#1A1A1A]">User App</p>
+        <Image
+          src="/images/mini_user.png"
+          alt="QR Code"
+          width={50}
+          height={160}
+          className="rounded-lg"
+        />
       </div>
     </motion.div>
   )
 
   return (
-    <div className="fixed bottom-0 right-0 z-50 mb-5 mr-8 md:mb-5 md:mr-8 sm:mb-4 sm:mr-4">
+    <div className="fixed bottom-0 right-0 z-50 mb-5 mr-8 md:mb-5 md:mr-8 sm:mb-4 sm:mr-4 hidden md:block">
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
@@ -730,7 +742,8 @@ function Download() {
             <div className="bg-gradient-to-t from-orange-600 to-white p-5 h-[200px]">
               <div className="flex justify-center">
                 <Image
-                  src="/images/logomark.png"
+                  src="/images/mini_user.png"
+                  className='rounded-lg'
                   alt="One Rewards"
                   width={100}
                   height={40}
@@ -771,7 +784,8 @@ function Download() {
             <div className="bg-gradient-to-t from-orange-600 to-white p-5 h-[200px]">
               <div className="flex justify-center">
                 <Image
-                  src="/images/logomark.png"
+                  src="/images/mini_business.png"
+                  className='rounded-lg'
                   alt="One Rewards"
                   width={100}
                   height={40}
@@ -873,7 +887,9 @@ function ListedItems() {
 
   return (
     <section id="business-types" className="relative py-10">
-      <div className="container h-[700vh] hidden md:block" ref={containerRef} >
+      <div className=" container h-[700vh] hidden md:block" ref={containerRef} >
+       
+        <div className="sticky h-screen top-0 pt-20">
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-4">
             For All Types of Retail Businesses
@@ -882,79 +898,60 @@ function ListedItems() {
             One Rewards works with a wide range of retail businesses to help them build customer loyalty.
           </p>
         </div>
-        <motion.div style={{ x }} className="sticky h-screen top-0 flex flex-row gap-10 items-center">
-          {items.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 100, filter: "blur(10px)" }}
-              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          <motion.div style={{ x }} className=" flex flex-row gap-10 items-center">
 
-              transition={{
-
-
-                type: "easeInOut",
-              }}
-              className="flex items-center justify-center h-[400px] w-[200px] min-w-[400px] p-4 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-sm bg-white/30 border border-white/20 hover:shadow-[0_8px_30px_rgba(236,117,8,0.3)] transition-all duration-300 group"
-            >
-              <div className="flex flex-col items-center w-full relative">
-                <motion.div className="overflow-hidden rounded-lg w-full bg-gradient-to-br from-white/40 to-white/10 p-2"
-                  initial={{ opacity: 0, filter: "blur(10px)" }}
-                  whileInView={{ opacity: 1, filter: "blur(0px)" }}
-                  transition={{ duration: 0.7 }}
-                >
-                  <Image
-                    src={item.url}
-                    alt={item.name}
-                    width={400}
-                    height={300}
-                    loading="lazy"
-                    className="object-cover w-full h-[280px] rounded-lg transform group-hover:scale-110 transition-transform duration-500"
-                  />
-                </motion.div>
-                <div className="text-center px-4 py-4 backdrop-blur-md bg-white/20 rounded-lg mt-4 w-full border border-white/20">
-                  <h3 className="text-lg md:text-xl font-semibold text-[#1A1A1A] group-hover:text-[#EC7508] transition-colors">{item.name}</h3>
+            {items.map((item, index) => (
+              <motion.div
+                key={index}
+                className="flex items-center justify-center h-[400px] w-[200px] min-w-[400px] p-4 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-sm bg-white/30 border border-white/20 hover:shadow-[0_8px_30px_rgba(236,117,8,0.3)] transition-all duration-300 group"
+              >
+                <div className="flex flex-col items-center w-full relative">
+                  <motion.div className="overflow-hidden rounded-lg w-full bg-gradient-to-br from-white/40 to-white/10 p-2"
+                  >
+                    <Image
+                      src={item.url}
+                      alt={item.name}
+                      width={400}
+                      height={300}
+                      loading="lazy"
+                      className="object-cover w-full h-[280px] rounded-lg transform group-hover:scale-110 transition-transform duration-500"
+                    />
+                  </motion.div>
+                  <div className="text-center px-4 py-4 backdrop-blur-md bg-white/20 rounded-lg mt-4 w-full border border-white/20">
+                    <h3 className="text-lg md:text-xl font-semibold text-[#1A1A1A] group-hover:text-[#EC7508] transition-colors">{item.name}</h3>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </div>
       <div className="md:hidden">
+      <div className="text-center mb-12 px-10">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-4">
+            For All Types of Retail Businesses
+          </h2>
+          <p className="text-base md:text-lg text-[#1A1A1A]/70 max-w-3xl mx-auto">
+            One Rewards works with a wide range of retail businesses to help them build customer loyalty.
+          </p>
+        </div>
         <Carousel
           opts={{
             align: "start",
             loop: true,
             containScroll: "trimSnaps",
           }}
-          plugins={[
-            Autoplay({
-              delay: 1000,
-              stopOnInteraction: false,
-              stopOnMouseEnter: true,
-              rootNode: (emblaRoot) => emblaRoot.parentElement,
-            }),
-          ]}
           className="w-full"
         >
           <CarouselContent className="">
             {items.map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 100, filter: "blur(10px)" }}
-                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-
-                transition={{
-
-
-                  type: "easeInOut",
-                }}
                 className="flex items-center justify-center h-[400px] w-[200px] min-w-[400px] p-4 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-sm bg-white/30 border border-white/20 hover:shadow-[0_8px_30px_rgba(236,117,8,0.3)] transition-all duration-300 group"
               >
                 <div className="flex flex-col items-center w-full relative">
                   <motion.div className="overflow-hidden rounded-lg w-full bg-gradient-to-br from-white/40 to-white/10 p-2"
-                    initial={{ opacity: 0, filter: "blur(10px)" }}
-                    whileInView={{ opacity: 1, filter: "blur(0px)" }}
-                    transition={{ duration: 0.7 }}
+
                   >
                     <Image
                       src={item.url}
@@ -1190,17 +1187,14 @@ function Hero() {
               })}
             </div>
           </motion.div>
-          <h1 className="text-2xl text-white md:text-3xl lg:text-4xl flex justify-center items-center font-medium text-[#1A1A1A]">
-            Endless Rewards
+          <h1 className="text-1xl text-white md:text-3xl lg:text-4xl flex justify-center items-center font-medium text-[#1A1A1A]">
+            For Endless Rewards
           </h1>
-          <p className="text-base font-light  opacity-90 text-center ">
-            The complete loyalty rewards platform that helps retail businesses create, manage, and grow customer
-            loyalty programs that drive repeat business.
-          </p>
+
           <div className="sm:flex-row gap-4 pt-4 text-center">
             <Button size="lg" className="bg-white text-[#EC7508] hover:bg-[#F2F2F2] hover:text-[#C11805]">
               <Link href="#download">
-                Get Started Free
+                Get Started
               </Link>
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
@@ -1269,7 +1263,7 @@ function EarnRewards() {
                 WebkitTextStroke: '1px rgba(255,255,255,0.1)'
               }}
             >
-              REWARDS
+              ONE REWARDS
             </motion.h1>
           </div>
         </div>
@@ -1365,7 +1359,12 @@ function AboutPage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <motion.div className="grid md:grid-cols-3 gap-8"
+              initial={{ opacity: 0.5, y: 30, filter: "blur(20px)", scale: 1.5 }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
+              transition={{ duration: 1, type: "spring", delay: 0.3 }}
+              viewport={{ once: false }}
+            >
               {[
                 {
                   title: "Innovation",
@@ -1387,7 +1386,7 @@ function AboutPage() {
                   </CardContent>
                 </Card>
               ))}
-            </div>
+            </motion.div>
           </div>
         </section>
 
@@ -1407,7 +1406,7 @@ function Benefitusers() {
           <h2 className="text-2xl md:text-3xl lg:text-4xl mb-5 font-medium text-[#1A1A1A] ">
             Benefits for Users
           </h2>
-          <div className="flex justify-center hidden md:flex items-center">
+          {/* <div className="flex justify-center hidden md:flex items-center">
             <div className="relative w-[600px] flex justify-center items-center h-[500px] object-cover">
               <div className="absolute inset-0 z-10">
                 <Spline
@@ -1417,7 +1416,7 @@ function Benefitusers() {
               </div>
               <div className="absolute bottom-0 right-0 w-[180px] h-[70px] bg-white z-20"></div>
             </div>
-          </div>
+          </div> */}
           <p className="text-base md:text-lg text-[#1A1A1A]/70 max-w-3xl mx-auto">
             Discover why thousands of shoppers love using One Rewards
           </p>
