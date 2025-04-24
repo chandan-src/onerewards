@@ -739,7 +739,7 @@ function Download() {
         </div>
         <div className="flex flex-col md:flex-row gap-6 max-w-2xl mx-auto">
           <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-            <div className="bg-gradient-to-t from-orange-600 to-white p-5 h-[200px]">
+            <div className="bg-[#c72306] p-5 h-[200px]">
               <div className="flex justify-center">
                 <Image
                   src="/images/mini_user.png"
@@ -773,7 +773,7 @@ function Download() {
                   <Link target="_blank" href="https://play.google.com/store/apps/details?id=com.mcmr.user&pcampaignid=web_share" className="inline-flex items-center justify-center bg-black/90 text-white rounded-lg px-4 py-2">
                     <Image src="/images/android.png" alt="Google Play" width={130} height={130} />
                   </Link>
-                  <Link target="_blank" href="https://play.google.com/store/apps/details?id=com.mcmr.user&pcampaignid=web_share" className="inline-flex items-center justify-center bg-black/90 text-white rounded-lg px-4 py-2">
+                  <Link target="_blank" href="https://apps.apple.com/in/app/one-rewards-app/id6737114628" className="inline-flex items-center justify-center bg-black/90 text-white rounded-lg px-4 py-2">
                     <Image src="/images/ios.png" alt="App Store" width={130} height={130} />
                   </Link>
                 </div>
@@ -781,7 +781,7 @@ function Download() {
             </div>
           </div>
           <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-            <div className="bg-gradient-to-t from-orange-600 to-white p-5 h-[200px]">
+            <div className="bg-[#d21b00] p-5 h-[200px]">
               <div className="flex justify-center">
                 <Image
                   src="/images/mini_business.png"
@@ -813,7 +813,7 @@ function Download() {
                   <Link target="_blank" href="https://play.google.com/store/apps/details?id=com.mcmr.store&pcampaignid=web_share" className="inline-flex items-center justify-center bg-black/90 text-white rounded-lg px-4 py-2">
                     <Image src="/images/android.png" alt="Google Play" width={130} height={130} />
                   </Link>
-                  <Link target="_blank" href="https://play.google.com/store/apps/details?id=com.mcmr.store&pcampaignid=web_share" className="inline-flex items-center justify-center bg-black/90 text-white rounded-lg px-4 py-2">
+                  <Link target="_blank" href="https://apps.apple.com/in/app/one-rewards-business/id6737472554" className="inline-flex items-center justify-center bg-black/90 text-white rounded-lg px-4 py-2">
                     <Image src="/images/ios.png" alt="App Store" width={120} height={120} />
                   </Link>
                 </div>
@@ -830,33 +830,33 @@ function Download() {
 
 
 function ListedItems() {
-  const containerRef = useRef(null);
-  const [windowWidth, setWindowWidth] = useState(0);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
+  // const containerRef = useRef(null);
+  // const [windowWidth, setWindowWidth] = useState(0);
+  // const { scrollYProgress } = useScroll({
+  //   target: containerRef,
+  //   offset: ["start start", "end end"]
+  // });
 
-  useEffect(() => {
-    // Set initial window width
-    setWindowWidth(window.innerWidth);
+  // useEffect(() => {
+  //   // Set initial window width
+  //   setWindowWidth(window.innerWidth);
 
-    // Update window width on resize
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
+  //   // Update window width on resize
+  //   const handleResize = () => {
+  //     setWindowWidth(window.innerWidth);
+  //   };
 
-    window.addEventListener('resize', handleResize);
+  //   window.addEventListener('resize', handleResize);
 
-    // Clean up event listener
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  //   // Clean up event listener
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //   };
+  // }, []);
 
   // Adjust the transform value based on window width
-  const transformValue = windowWidth > 1024 ? "-300%" : windowWidth > 768 ? "-550%" : "-1200%";
-  const x = useTransform(scrollYProgress, [0, 1], ["1%", transformValue]);
+  // const transformValue = windowWidth > 1024 ? "-300%" : windowWidth > 768 ? "-550%" : "-1200%";
+  // const x = useTransform(scrollYProgress, [0, 1], ["1%", transformValue]);
 
   const items = [
     { icon: "✂️", name: "Salons & Spas", url: "/images/cards/salon.jpg" },
@@ -887,9 +887,9 @@ function ListedItems() {
 
   return (
     <section id="business-types" className="relative py-10">
-      <div className=" container h-[700vh] hidden md:block" ref={containerRef} >
+      <div className=" container ">
 
-        <div className="sticky h-screen top-0 pt-20">
+        <div className="pt-10">
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-4">
               For All Types of Retail Businesses
@@ -898,66 +898,36 @@ function ListedItems() {
               One Rewards works with a wide range of retail businesses to help them build customer loyalty.
             </p>
           </div>
-          <motion.div style={{ x }} className=" flex flex-row gap-10 items-center">
-
-            {items.map((item, index) => (
-              <motion.div
-                key={index}
-                className="flex items-center justify-center h-[400px] w-[200px] min-w-[400px] p-4 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-sm bg-white/30 border border-white/20 hover:shadow-[0_8px_30px_rgba(236,117,8,0.3)] transition-all duration-300 group"
-              >
-                <div className="flex flex-col items-center w-full relative">
-                  <motion.div className="overflow-hidden rounded-lg w-full bg-gradient-to-br from-white/40 to-white/10 p-2"
-                  >
-                    <Image
-                      src={item.url}
-                      alt={item.name}
-                      width={400}
-                      height={300}
-                      loading="lazy"
-                      className="object-cover w-full h-[280px] rounded-lg transform group-hover:scale-110 transition-transform duration-500"
-                    />
-                  </motion.div>
-                  <div className="text-center px-4 py-4 backdrop-blur-md bg-white/20 rounded-lg mt-4 w-full border border-white/20">
-                    <h3 className="text-lg md:text-xl font-semibold text-[#1A1A1A] group-hover:text-[#EC7508] transition-colors">{item.name}</h3>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </div>
-      <div className="md:hidden">
-        <div className="text-center mb-12 py-10">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-4">
-            For All Types of Retail Businesses
-          </h2>
-          <p className="text-base md:text-lg text-[#1A1A1A]/70 max-w-3xl mx-auto">
-            One Rewards works with a wide range of retail businesses to help them build customer loyalty.
-          </p>
-        </div>
-        <Carousel
-          opts={{
-            align: "center",
-            loop: true,
-            containScroll: "trimSnaps",
-          }}
-          className="w-full"
-        >
-          <CarouselContent className="-ml-2 md:-ml-4">
-            {items.map((item, index) => (
-              <CarouselItem key={index} className="pl-2 md:pl-4 flex justify-center">
+          <div className="overflow-hidden">
+            <motion.div 
+              className="flex flex-row gap-10 items-center"
+              animate={{ 
+                x: [0, -50 * items.length * 8], 
+              }}
+              transition={{ 
+                x: { 
+                  repeat: Infinity, 
+                  duration: 60,
+                  ease: "linear",
+                },
+              }}
+            >
+              {/* First set of items */}
+              {items.map((item, index) => (
                 <motion.div
-                  className="flex items-center justify-center h-[300px] w-full max-w-[350px] p-4 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-sm bg-white/30 border border-white/20 hover:shadow-[0_8px_30px_rgba(236,117,8,0.3)] transition-all duration-300 group"
+                  key={index}
+                  className="flex items-center justify-center h-[400px] w-[100px] min-w-[300px] p-4 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-sm bg-white/30 border border-white/20 hover:shadow-[0_8px_30px_rgba(236,117,8,0.3)] transition-all duration-300 group"
                 >
                   <div className="flex flex-col items-center w-full relative">
-                    <motion.div className="overflow-hidden rounded-lg w-full bg-gradient-to-br from-white/40 to-white/10 p-2">
+                    <motion.div className="overflow-hidden rounded-lg w-full bg-gradient-to-br from-white/40 to-white/10 p-2"
+                    >
                       <Image
                         src={item.url}
                         alt={item.name}
                         width={400}
                         height={300}
                         loading="lazy"
-                        className="object-cover w-full h-[200px] rounded-lg transform group-hover:scale-110 transition-transform duration-500"
+                        className="object-cover w-full h-[280px] rounded-lg transform group-hover:scale-110 transition-transform duration-500"
                       />
                     </motion.div>
                     <div className="text-center px-4 py-4 backdrop-blur-md bg-white/20 rounded-lg mt-4 w-full border border-white/20">
@@ -965,12 +935,37 @@ function ListedItems() {
                     </div>
                   </div>
                 </motion.div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        
-        </Carousel>
+              ))}
+              
+              {/* Duplicate items to create seamless loop */}
+              {items.map((item, index) => (
+                <motion.div
+                  key={`duplicate-${index}`}
+                  className="flex items-center justify-center h-[400px] w-[100px] min-w-[300px] p-4 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-sm bg-white/30 border border-white/20 hover:shadow-[0_8px_30px_rgba(236,117,8,0.3)] transition-all duration-300 group"
+                >
+                  <div className="flex flex-col items-center w-full relative">
+                    <motion.div className="overflow-hidden rounded-lg w-full bg-gradient-to-br from-white/40 to-white/10 p-2"
+                    >
+                      <Image
+                        src={item.url}
+                        alt={item.name}
+                        width={400}
+                        height={300}
+                        loading="lazy"
+                        className="object-cover w-full h-[280px] rounded-lg transform group-hover:scale-110 transition-transform duration-500"
+                      />
+                    </motion.div>
+                    <div className="text-center px-4 py-4 backdrop-blur-md bg-white/20 rounded-lg mt-4 w-full border border-white/20">
+                      <h3 className="text-lg md:text-xl font-semibold text-[#1A1A1A] group-hover:text-[#EC7508] transition-colors">{item.name}</h3>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
       </div>
+      
     </section>
   )
 
