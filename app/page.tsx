@@ -65,7 +65,7 @@ export default function LandingPage() {
 
 
   return (
-    <div className="flex min-h-screen flex-col scroll-smooth" id="header">
+    <div className="flex min-h-screen flex-col scroll-smooth overflow-x-hidden" id="header">
       <Navbar></Navbar>
       <main className="flex-1">
         <Hero></Hero>
