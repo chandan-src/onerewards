@@ -830,18 +830,18 @@ function Download() {
 
 function Listed() {
   const items = [
-    { icon: "✂️", name: "Salons & Spas", url: "/images/bgrewards.webp" },
-    { icon: "🛒", name: "Grocery Stores", url: "/images/bgrewards.webp" },
-    { icon: "💪", name: "Health & Fitness", url: "/images/bgrewards.webp" },
-    { icon: "🚗", name: "Rent-a-Car", url: "/images/bgrewards.webp" },
-    { icon: "👕", name: "Fashion Retail", url: "/images/bgrewards.webp" },
-    { icon: "🎬", name: "Movie Theaters", url: "/images/bgrewards.webp" },
-    { icon: "✈️", name: "Airlines", url: "/images/bgrewards.webp" },
-    { icon: "🍔", name: "Restaurants", url: "/images/bgrewards.webp" },
-    { icon: "☕", name: "Cafes", url: "/images/bgrewards.webp" },
-    { icon: "📚", name: "Bookstores", url: "/images/bgrewards.webp" },
-    { icon: "🏪", name: "Convenience Stores", url: "/images/bgrewards.webp" },
-    { icon: "💊", name: "Pharmacies", url: "/images/bgrewards.webp" }
+    { icon: "✂️", name: "Salons & Spas", url: "/images/cards/salon2.webp" },
+    { icon: "🛒", name: "Grocery Stores", url: "/images/cards/grocery.webp" },
+    { icon: "💪", name: "Health & Fitness", url: "/images/cards/health2.webp" },
+    { icon: "🚗", name: "Rent-a-Car", url: "/images/cards/cars.webp" },
+    { icon: "👕", name: "Fashion Retail", url: "/images/cards/fashion.webp" },
+    { icon: "🎬", name: "Movie Theaters", url: "/images/cards/theatre.webp" },
+    { icon: "✈️", name: "Airlines", url: "/images/cards/flights.webp" },
+    { icon: "🍔", name: "Restaurants", url: "/images/cards/restaurants.webp" },
+    { icon: "☕", name: "Cafes", url: "/images/cards/cafe.webp" },
+    { icon: "📚", name: "Bookstores", url: "/images/cards/bookstore.avif" },
+    { icon: "🏪", name: "Convenience Stores", url: "/images/cards/convenience.webp" },
+    { icon: "💊", name: "Pharmacies", url: "/images/cards/pharmacy.jpeg" }
   ]
   return (
     <>
@@ -891,18 +891,18 @@ function Listed() {
 
 function ListedItems() {
   const items = [
-    { icon: "✂️", name: "Salons & Spas", url: "/images/cards/salon.jpg" },
-    { icon: "🛒", name: "Grocery Stores", url: "/images/cards/grocery.jpg" },
-    { icon: "💪", name: "Health & Fitness", url: "/images/cards/health.jpg" },
-    { icon: "🚗", name: "Rent-a-Car", url: "/images/cards/cars.jpg" },
-    { icon: "👕", name: "Fashion Retail", url: "/images/cards/fashion.jpg" },
-    { icon: "🎬", name: "Movie Theaters", url: "/images/cards/theatre.jpg" },
-    { icon: "✈️", name: "Airlines", url: "/images/cards/flights.jpg" },
-    { icon: "🍔", name: "Restaurants", url: "/images/cards/restaurants.jpg" },
-    { icon: "☕", name: "Cafes", url: "/images/cards/cafe.jpg" },
-    { icon: "📚", name: "Bookstores", url: "/images/cards/bookstore.jpg" },
-    { icon: "🏪", name: "Convenience Stores", url: "/images/cards/convenience.jpg" },
-    { icon: "💊", name: "Pharmacies", url: "/images/cards/pharmacy.jpg" }
+    { icon: "✂️", name: "Salons & Spas", url: "/images/cards/salon2.webp" },
+    { icon: "🛒", name: "Grocery Stores", url: "/images/cards/grocery.webp" },
+    { icon: "💪", name: "Health & Fitness", url: "/images/cards/health2.webp" },
+    { icon: "🚗", name: "Rent-a-Car", url: "/images/cards/cars.webp" },
+    { icon: "👕", name: "Fashion Retail", url: "/images/cards/fashion.webp" },
+    { icon: "🎬", name: "Movie Theaters", url: "/images/cards/theatre.webp" },
+    { icon: "✈️", name: "Airlines", url: "/images/cards/flights.webp" },
+    // { icon: "🍔", name: "Restaurants", url: "/images/cards/restaurants.jpg" },
+    // { icon: "☕", name: "Cafes", url: "/images/cards/cafe.jpg" },
+    // { icon: "📚", name: "Bookstores", url: "/images/cards/bookstore.jpg" },
+    // { icon: "🏪", name: "Convenience Stores", url: "/images/cards/convenience.jpg" },
+    // { icon: "💊", name: "Pharmacies", url: "/images/cards/pharmacy.jpg" }
   ]
 
   return (
