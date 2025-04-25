@@ -131,7 +131,7 @@ export default function LandingPage() {
 
 
 
-        <ListedItems></ListedItems>
+        {/* <ListedItems></ListedItems> */}
 
 
         {/* <Howitworks></Howitworks>
