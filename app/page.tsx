@@ -830,34 +830,6 @@ function Download() {
 
 
 function ListedItems() {
-  // const containerRef = useRef(null);
-  // const [windowWidth, setWindowWidth] = useState(0);
-  // const { scrollYProgress } = useScroll({
-  //   target: containerRef,
-  //   offset: ["start start", "end end"]
-  // });
-
-  // useEffect(() => {
-  //   // Set initial window width
-  //   setWindowWidth(window.innerWidth);
-
-  //   // Update window width on resize
-  //   const handleResize = () => {
-  //     setWindowWidth(window.innerWidth);
-  //   };
-
-  //   window.addEventListener('resize', handleResize);
-
-  //   // Clean up event listener
-  //   return () => {
-  //     window.removeEventListener('resize', handleResize);
-  //   };
-  // }, []);
-
-  // Adjust the transform value based on window width
-  // const transformValue = windowWidth > 1024 ? "-300%" : windowWidth > 768 ? "-550%" : "-1200%";
-  // const x = useTransform(scrollYProgress, [0, 1], ["1%", transformValue]);
-
   const items = [
     { icon: "✂️", name: "Salons & Spas", url: "/images/cards/salon.jpg" },
     { icon: "🛒", name: "Grocery Stores", url: "/images/cards/grocery.jpg" },
@@ -875,8 +847,7 @@ function ListedItems() {
 
   return (
     <section id="business-types" className="relative py-10">
-      <div className=" container ">
-
+      <div className="container">
         <div className="pt-10">
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-4">
@@ -886,78 +857,57 @@ function ListedItems() {
               One Rewards works with a wide range of retail businesses to help them build customer loyalty.
             </p>
           </div>
-          <div className="overflow-hidden">
-            <motion.div
-              className="flex flex-row gap-10 items-center"
-              animate={{
-                x: [0, -50 * items.length * 8],
+          <div className="relative">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+                containScroll: "trimSnaps",
               }}
-              transition={{
-                x: {
-                  repeat: Infinity,
-                  duration: 60,
-                  ease: "linear",
-                },
-              }}
+              plugins={[
+                Autoplay({
+                  delay: 2000, // Increased delay for smoother transitions
+                  stopOnInteraction: false,
+                  stopOnMouseEnter: true,
+                  rootNode: (emblaRoot) => emblaRoot.parentElement,
+                }),
+              ]}
+              className="w-full"
             >
-              {/* First set of items */}
-              {items.map((item, index) => (
-                <motion.div
-                  key={index}
-                  className="flex items-center justify-center h-[400px] w-[100px] min-w-[300px] p-4 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-sm bg-white/30 border border-white/20 hover:shadow-[0_8px_30px_rgba(236,117,8,0.3)] transition-all duration-300 group"
-                >
-                  <div className="flex flex-col items-center w-full relative">
-                    <motion.div className="overflow-hidden rounded-lg w-full bg-gradient-to-br from-white/40 to-white/10 p-2"
-                    >
-                      <Image
-                        src={item.url}
-                        alt={item.name}
-                        width={400}
-                        height={300}
-                        loading="lazy"
-                        className="object-cover w-full h-[280px] rounded-lg transform group-hover:scale-110 transition-transform duration-500"
-                      />
-                    </motion.div>
-                    <div className="text-center px-4 py-4 backdrop-blur-md bg-white/20 rounded-lg mt-4 w-full border border-white/20">
-                      <h3 className="text-lg md:text-xl font-semibold text-[#1A1A1A] group-hover:text-[#EC7508] transition-colors">{item.name}</h3>
+              <CarouselContent className="md:-ml-4">
+                {items.map((item, index) => (
+                  <CarouselItem 
+                    key={index} 
+                    className="pl-2 md:pl-4 basis-full sm:basis-1/2 md:basis-1/2 lg:basis-1/3"
+                  >
+                    <div className="h-[300px] sm:h-[350px] md:h-[400px] w-full p-2 sm:p-3 md:p-4 rounded-xl shadow-md bg-white/95 border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+                      <div className="flex flex-col items-center w-full h-full">
+                        <div className="relative w-full h-[200px] sm:h-[220px] md:h-[280px] rounded-lg overflow-hidden bg-gray-100">
+                          <Image
+                            src={item.url}
+                            alt={item.name}
+                            fill
+                            className="object-cover transition-transform duration-700 hover:scale-105"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            loading="lazy"
+                          />
+                        </div>
+                        <div className="flex-1 flex items-center justify-center w-full mt-4 px-2">
+                          <h3 className="text-base sm:text-lg md:text-xl font-semibold text-[#1A1A1A] hover:text-[#EC7508] transition-colors duration-300">
+                            {item.name}
+                          </h3>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
-
-              {/* Duplicate items to create seamless loop */}
-              {items.map((item, index) => (
-                <motion.div
-                  key={`duplicate-${index}`}
-                  className="flex items-center justify-center h-[400px] w-[100px] min-w-[300px] p-4 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-sm bg-white/30 border border-white/20 hover:shadow-[0_8px_30px_rgba(236,117,8,0.3)] transition-all duration-300 group"
-                >
-                  <div className="flex flex-col items-center w-full relative">
-                    <motion.div className="overflow-hidden rounded-lg w-full bg-gradient-to-br from-white/40 to-white/10 p-2"
-                    >
-                      <Image
-                        src={item.url}
-                        alt={item.name}
-                        width={400}
-                        height={300}
-                        loading="lazy"
-                        className="object-cover w-full h-[280px] rounded-lg transform group-hover:scale-110 transition-transform duration-500"
-                      />
-                    </motion.div>
-                    <div className="text-center px-4 py-4 backdrop-blur-md bg-white/20 rounded-lg mt-4 w-full border border-white/20">
-                      <h3 className="text-lg md:text-xl font-semibold text-[#1A1A1A] group-hover:text-[#EC7508] transition-colors">{item.name}</h3>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
           </div>
         </div>
       </div>
-
     </section>
   )
-
-
 }
 
 
@@ -997,12 +947,12 @@ function Navbar() {
           </Link>
         </div>
         <nav className="hidden md:flex gap-6">
-        <Link href="#about" className="text-[#1A1A1A] hover:text-[#EC7508] font-medium transition-colors">
+          <Link href="#about" className="text-[#1A1A1A] hover:text-[#EC7508] font-medium transition-colors">
             About Us
           </Link>
-          
+
           <Link href="#benefits" className="text-[#1A1A1A] hover:text-[#EC7508] font-medium transition-colors">
-           Benefits
+            Benefits
           </Link>
           <Link href="#business" className="text-[#1A1A1A] hover:text-[#EC7508] font-medium transition-colors">
             Business
@@ -1010,8 +960,8 @@ function Navbar() {
           <Link href="#testimonials" className="text-[#1A1A1A] hover:text-[#EC7508] font-medium transition-colors">
             Testimonials
           </Link>
-        
-         
+
+
         </nav>
         <div className="flex items-center gap-4">
           <Link href="/contact" className=" md:block">
@@ -1326,40 +1276,40 @@ function AboutPage() {
         </Button>
       </div>
       <section id="mission" className="py-20 bg-[#F2F2F2]">
-                    <div className="container">
-                        <div className="text-center mb-16">
-                            <h2 className="text-3xl md:text-4xl font-bold text-[#1A1A1A] mb-4">Our Mission</h2>
-                            <p className="text-lg text-[#1A1A1A]/70 max-w-3xl mx-auto">
-                                To empower retail businesses with innovative loyalty solutions that drive customer engagement and business
-                                growth.
-                            </p>
-                        </div>
+        <div className="container">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1A1A1A] mb-4">Our Mission</h2>
+            <p className="text-lg text-[#1A1A1A]/70 max-w-3xl mx-auto">
+              To empower retail businesses with innovative loyalty solutions that drive customer engagement and business
+              growth.
+            </p>
+          </div>
 
-                        <div className="grid md:grid-cols-3 gap-8">
-                            {[
-                                {
-                                    title: "Innovation",
-                                    description: "We constantly push the boundaries of what's possible in customer loyalty programs.",
-                                },
-                                {
-                                    title: "Customer Success",
-                                    description: "Your success is our success. We're committed to helping you achieve your business goals.",
-                                },
-                                {
-                                    title: "Integrity",
-                                    description: "We operate with transparency and honesty in all our business dealings.",
-                                },
-                            ].map((value, index) => (
-                                <Card key={index} className="border-none shadow-lg">
-                                    <CardContent className="p-6">
-                                        <h3 className="text-xl font-bold mb-3 text-[#1A1A1A]">{value.title}</h3>
-                                        <p className="text-[#1A1A1A]/70">{value.description}</p>
-                                    </CardContent>
-                                </Card>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Innovation",
+                description: "We constantly push the boundaries of what's possible in customer loyalty programs.",
+              },
+              {
+                title: "Customer Success",
+                description: "Your success is our success. We're committed to helping you achieve your business goals.",
+              },
+              {
+                title: "Integrity",
+                description: "We operate with transparency and honesty in all our business dealings.",
+              },
+            ].map((value, index) => (
+              <Card key={index} className="border-none shadow-lg">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold mb-3 text-[#1A1A1A]">{value.title}</h3>
+                  <p className="text-[#1A1A1A]/70">{value.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
 
     </>
 
