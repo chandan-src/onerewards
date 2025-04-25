@@ -131,7 +131,7 @@ export default function LandingPage() {
 
 
 
-        <Listed></Listed>
+        <ListedItems></ListedItems>
 
 
         {/* <Howitworks></Howitworks>
@@ -828,65 +828,6 @@ function Download() {
 }
 
 
-function Listed() {
-  const items = [
-    { icon: "✂️", name: "Salons & Spas", url: "/images/cards/salon2.webp" },
-    { icon: "🛒", name: "Grocery Stores", url: "/images/cards/grocery.webp" },
-    { icon: "💪", name: "Health & Fitness", url: "/images/cards/health2.webp" },
-    { icon: "🚗", name: "Rent-a-Car", url: "/images/cards/cars.webp" },
-    { icon: "👕", name: "Fashion Retail", url: "/images/cards/fashion.webp" },
-    { icon: "🎬", name: "Movie Theaters", url: "/images/cards/theatre.webp" },
-    { icon: "✈️", name: "Airlines", url: "/images/cards/flights.webp" },
-    { icon: "🍔", name: "Restaurants", url: "/images/cards/restaurants.webp" },
-    { icon: "☕", name: "Cafes", url: "/images/cards/cafe.webp" },
-    { icon: "📚", name: "Bookstores", url: "/images/cards/bookstore.avif" },
-    { icon: "🏪", name: "Convenience Stores", url: "/images/cards/convenience.webp" },
-    { icon: "💊", name: "Pharmacies", url: "/images/cards/pharmacy.jpeg" }
-  ]
-  return (
-    <>
-       <div className="container">
-        <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-4">
-            For All Types of Retail Businesses
-          </h2>
-          <p className="text-base md:text-lg text-[#1A1A1A]/70 max-w-3xl mx-auto">
-            One Rewards works with a wide range of retail businesses to help them build customer loyalty.
-          </p>
-          <div className="relative mt-20">
-              <Carousel
-                opts={{
-                  align: "start",
-                  loop: true,
-                  containScroll: "trimSnaps",
-                }}
-                plugins={[
-                  Autoplay({
-                    delay: 1000,
-                    stopOnInteraction: false,
-                    stopOnMouseEnter: true,
-                    rootNode: (emblaRoot) => emblaRoot.parentElement,
-                  }),
-                ]}
-                className="w-full"
-              >
-                <CarouselContent className="">
-                   { items.map((item, index) => (
-                    <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                      <div className="flex justify-center items-center">
-                        <Image src={item.url} alt={item.name} width={300} height={300} className="object-cover rounded-lg" />
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-
-              </Carousel>
-            </div>
-        </div>
-       </div>
-    </>
-  )
-}
 
 
 function ListedItems() {
@@ -896,13 +837,13 @@ function ListedItems() {
     { icon: "💪", name: "Health & Fitness", url: "/images/cards/health2.webp" },
     { icon: "🚗", name: "Rent-a-Car", url: "/images/cards/cars.webp" },
     { icon: "👕", name: "Fashion Retail", url: "/images/cards/fashion.webp" },
-    { icon: "🎬", name: "Movie Theaters", url: "/images/cards/theatre.webp" },
+    { icon: "🎬", name: "Movie Theaters", url: "/images/cards/theatre.jpg" },
     { icon: "✈️", name: "Airlines", url: "/images/cards/flights.webp" },
-    // { icon: "🍔", name: "Restaurants", url: "/images/cards/restaurants.jpg" },
-    // { icon: "☕", name: "Cafes", url: "/images/cards/cafe.jpg" },
-    // { icon: "📚", name: "Bookstores", url: "/images/cards/bookstore.jpg" },
-    // { icon: "🏪", name: "Convenience Stores", url: "/images/cards/convenience.jpg" },
-    // { icon: "💊", name: "Pharmacies", url: "/images/cards/pharmacy.jpg" }
+    { icon: "🍔", name: "Restaurants", url: "/images/cards/restaurants.webp" },
+    { icon: "☕", name: "Cafes", url: "/images/cards/cafe.webp" },
+    { icon: "📚", name: "Bookstores", url: "/images/cards/bookstore.avif" },
+    { icon: "🏪", name: "Convenience Stores", url: "/images/cards/convenience.webp" },
+    { icon: "💊", name: "Pharmacies", url: "/images/cards/pharmacy.jpeg" }
   ]
 
   return (
@@ -926,7 +867,7 @@ function ListedItems() {
               }}
               plugins={[
                 Autoplay({
-                  delay: 2000, // Increased delay for smoother transitions
+                  delay: 1000, // Increased delay for smoother transitions
                   stopOnInteraction: false,
                   stopOnMouseEnter: true,
                   rootNode: (emblaRoot) => emblaRoot.parentElement,
