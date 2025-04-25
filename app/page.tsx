@@ -830,18 +830,18 @@ function Download() {
 
 function Listed() {
   const items = [
-    { icon: "✂️", name: "Salons & Spas", url: "/images/cards/salon.jpg" },
-    { icon: "🛒", name: "Grocery Stores", url: "/images/cards/salon.jpg" },
-    { icon: "💪", name: "Health & Fitness", url: "/images/cards/salon.jpg" },
-    { icon: "🚗", name: "Rent-a-Car", url: "/images/cards/salon.jpg" },
-    { icon: "👕", name: "Fashion Retail", url: "/images/cards/salon.jpg" },
-    { icon: "🎬", name: "Movie Theaters", url: "/images/cards/salon.jpg" },
-    { icon: "✈️", name: "Airlines", url: "/images/cards/salon.jpg" },
-    { icon: "🍔", name: "Restaurants", url: "/images/cards/salon.jpg" },
-    { icon: "☕", name: "Cafes", url: "/images/cards/salon.jpg" },
-    { icon: "📚", name: "Bookstores", url: "/images/cards/salon.jpg" },
-    { icon: "🏪", name: "Convenience Stores", url: "/images/cards/salon.jpg" },
-    { icon: "💊", name: "Pharmacies", url: "/images/cards/salon.jpg" }
+    { icon: "✂️", name: "Salons & Spas", url: "/images/bgrewards.webp" },
+    { icon: "🛒", name: "Grocery Stores", url: "/images/bgrewards.webp" },
+    { icon: "💪", name: "Health & Fitness", url: "/images/bgrewards.webp" },
+    { icon: "🚗", name: "Rent-a-Car", url: "/images/bgrewards.webp" },
+    { icon: "👕", name: "Fashion Retail", url: "/images/bgrewards.webp" },
+    { icon: "🎬", name: "Movie Theaters", url: "/images/bgrewards.webp" },
+    { icon: "✈️", name: "Airlines", url: "/images/bgrewards.webp" },
+    { icon: "🍔", name: "Restaurants", url: "/images/bgrewards.webp" },
+    { icon: "☕", name: "Cafes", url: "/images/bgrewards.webp" },
+    { icon: "📚", name: "Bookstores", url: "/images/bgrewards.webp" },
+    { icon: "🏪", name: "Convenience Stores", url: "/images/bgrewards.webp" },
+    { icon: "💊", name: "Pharmacies", url: "/images/bgrewards.webp" }
   ]
   return (
     <>
