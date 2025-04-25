@@ -831,17 +831,17 @@ function Download() {
 function Listed() {
   const items = [
     { icon: "✂️", name: "Salons & Spas", url: "/images/cards/salon.jpg" },
-    { icon: "🛒", name: "Grocery Stores", url: "/images/cards/grocery.jpg" },
-    { icon: "💪", name: "Health & Fitness", url: "/images/cards/health.jpg" },
-    { icon: "🚗", name: "Rent-a-Car", url: "/images/cards/cars.jpg" },
-    { icon: "👕", name: "Fashion Retail", url: "/images/cards/fashion.jpg" },
-    { icon: "🎬", name: "Movie Theaters", url: "/images/cards/theatre.jpg" },
-    { icon: "✈️", name: "Airlines", url: "/images/cards/flights.jpg" },
-    { icon: "🍔", name: "Restaurants", url: "/images/cards/restaurants.jpg" },
-    { icon: "☕", name: "Cafes", url: "/images/cards/cafe.jpg" },
-    { icon: "📚", name: "Bookstores", url: "/images/cards/bookstore.jpg" },
-    { icon: "🏪", name: "Convenience Stores", url: "/images/cards/convenience.jpg" },
-    { icon: "💊", name: "Pharmacies", url: "/images/cards/pharmacy.jpg" }
+    { icon: "🛒", name: "Grocery Stores", url: "/images/cards/salon.jpg" },
+    { icon: "💪", name: "Health & Fitness", url: "/images/cards/salon.jpg" },
+    { icon: "🚗", name: "Rent-a-Car", url: "/images/cards/salon.jpg" },
+    { icon: "👕", name: "Fashion Retail", url: "/images/cards/salon.jpg" },
+    { icon: "🎬", name: "Movie Theaters", url: "/images/cards/salon.jpg" },
+    { icon: "✈️", name: "Airlines", url: "/images/cards/salon.jpg" },
+    { icon: "🍔", name: "Restaurants", url: "/images/cards/salon.jpg" },
+    { icon: "☕", name: "Cafes", url: "/images/cards/salon.jpg" },
+    { icon: "📚", name: "Bookstores", url: "/images/cards/salon.jpg" },
+    { icon: "🏪", name: "Convenience Stores", url: "/images/cards/salon.jpg" },
+    { icon: "💊", name: "Pharmacies", url: "/images/cards/salon.jpg" }
   ]
   return (
     <>
@@ -855,22 +855,22 @@ function Listed() {
           </p>
           <div className="relative mt-20">
               <Carousel
-                // opts={{
-                //   align: "start",
-                //   loop: true,
-                //   containScroll: "trimSnaps",
-                // }}
-                // plugins={[
-                //   Autoplay({
-                //     delay: 1000,
-                //     stopOnInteraction: false,
-                //     stopOnMouseEnter: true,
-                //     rootNode: (emblaRoot) => emblaRoot.parentElement,
-                //   }),
-                // ]}
+                opts={{
+                  align: "start",
+                  loop: true,
+                  containScroll: "trimSnaps",
+                }}
+                plugins={[
+                  Autoplay({
+                    delay: 1000,
+                    stopOnInteraction: false,
+                    stopOnMouseEnter: true,
+                    rootNode: (emblaRoot) => emblaRoot.parentElement,
+                  }),
+                ]}
                 className="w-full"
               >
-                <CarouselContent className="-ml-2 md:-ml-4">
+                <CarouselContent className="">
                    { items.map((item, index) => (
                     <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
                       <div className="flex justify-center items-center">
