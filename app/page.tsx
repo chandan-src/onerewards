@@ -79,7 +79,7 @@ export default function LandingPage() {
 
         <EarnRewards></EarnRewards>
         {/* <CustomerLoyalty></CustomerLoyalty> */}
-        <section className="py-10 bg-white">
+        <section id="business" className="py-10 bg-white">
           <div className="container">
             <div className="flex justify-center items-center mt-10">
               <Image src="/images/full_business.png" className=" mb-10" alt="About" width={500} height={500} />
@@ -288,7 +288,7 @@ export default function LandingPage() {
         </section> */}
 
 
-        <section className="py-20 bg-white">
+        <section id="testimonials" className="py-20 bg-white">
           <div className="container">
             <div className="text-center mb-16">
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-4">
@@ -739,7 +739,7 @@ function Download() {
         </div>
         <div className="flex flex-col md:flex-row gap-6 max-w-2xl mx-auto">
           <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-            <div className="bg-[#c72306] p-5 h-[200px]">
+            <div className="bg-orange-500 p-5 h-[200px]">
               <div className="flex justify-center">
                 <Image
                   src="/images/mini_user.png"
@@ -781,7 +781,7 @@ function Download() {
             </div>
           </div>
           <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-            <div className="bg-[#d21b00] p-5 h-[200px]">
+            <div className="bg-red-600 p-5 h-[200px]">
               <div className="flex justify-center">
                 <Image
                   src="/images/mini_business.png"
@@ -1009,19 +1009,21 @@ function Navbar() {
           </Link>
         </div>
         <nav className="hidden md:flex gap-6">
-          <Link href="#features" className="text-[#1A1A1A] hover:text-[#EC7508] font-medium transition-colors">
-            Features
+        <Link href="#about" className="text-[#1A1A1A] hover:text-[#EC7508] font-medium transition-colors">
+            About Us
           </Link>
-          <Link href="#how-it-works" className="text-[#1A1A1A] hover:text-[#EC7508] font-medium transition-colors">
-            How It Works
+          
+          <Link href="#benefits" className="text-[#1A1A1A] hover:text-[#EC7508] font-medium transition-colors">
+           Benefits
           </Link>
-
+          <Link href="#business" className="text-[#1A1A1A] hover:text-[#EC7508] font-medium transition-colors">
+            Business
+          </Link>
           <Link href="#testimonials" className="text-[#1A1A1A] hover:text-[#EC7508] font-medium transition-colors">
             Testimonials
           </Link>
-          <Link href="#about" className="text-[#1A1A1A] hover:text-[#EC7508] font-medium transition-colors">
-            About Us
-          </Link>
+        
+         
         </nav>
         <div className="flex items-center gap-4">
           <Link href="/contact" className=" md:block">
@@ -1308,7 +1310,7 @@ function FadeContent() {
 function AboutPage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-white  py-20 md:py-32">
+      <section id="about" className="relative overflow-hidden bg-white  py-20 md:py-32">
         <div className="absolute inset-0  opacity-10"></div>
         <div className="container relative">
           <div className="max-w-3xl mx-auto text-center text-black">
@@ -1335,7 +1337,7 @@ function AboutPage() {
           Join Our Journey
         </Button>
       </div>
-      <section className="py-20 bg-[#F2F2F2]">
+      <section id="mission" className="py-20 bg-[#F2F2F2]">
                     <div className="container">
                         <div className="text-center mb-16">
                             <h2 className="text-3xl md:text-4xl font-bold text-[#1A1A1A] mb-4">Our Mission</h2>
@@ -1380,7 +1382,7 @@ function AboutPage() {
 
 function Benefitusers() {
   return (
-    <section className="py-20 bg-white">
+    <section id="benefits" className="py-20 bg-white">
       <div className="container">
         <div className="text-center mb-16">
           <h2 className="text-2xl md:text-3xl lg:text-4xl mb-5 font-medium text-[#1A1A1A] ">
