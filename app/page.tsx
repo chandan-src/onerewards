@@ -873,18 +873,6 @@ function ListedItems() {
     { icon: "💊", name: "Pharmacies", url: "/images/cards/pharmacy.jpg" }
   ]
 
-  useEffect(() => {
-    const lenis = new Lenis();
-
-    // Use requestAnimationFrame to continuously update the scroll
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-  }, [])
-
   return (
     <section id="business-types" className="relative py-10">
       <div className=" container ">
