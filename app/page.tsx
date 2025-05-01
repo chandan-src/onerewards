@@ -387,7 +387,7 @@ function Pricing() {
           </h2>
 
         </div>
-        <div className="flex w-[350px] lg:w-full mx-auto flex-col lg:flex-row gap-10 lg:gap-2 justify-between items-stretch border-2 rounded-xl min-h-96">
+        <div className="flex w-[280px] sm:w-[350px] md:w-[400px] lg:w-full mx-auto flex-col lg:flex-row gap-10 lg:gap-2 justify-between items-stretch border-2 rounded-xl min-h-96">
           
             <div className='relative w-full lg:w-3/4 flex flex-col lg:flex-row justify-between p-10 gap-10'>
               <div className='absolute top-[-17px] left-[30px] bg-black rounded-full px-4'>
