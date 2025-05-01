@@ -2,7 +2,7 @@
 import Lenis from 'lenis'
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, CheckCircle, Smartphone, Store, Award, BarChart3, QrCode } from "lucide-react"
+import { ArrowRight, CheckCircle, Smartphone, Store, Award, BarChart3, QrCode, Check } from "lucide-react"
 import Autoplay from 'embla-carousel-autoplay'
 import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
@@ -368,11 +368,167 @@ export default function LandingPage() {
         </section>
 
         <Download></Download>
+        <Pricing></Pricing>
       </main>
       <Qr></Qr>
       <Footer></Footer>
 
     </div>
+  )
+}
+
+function Pricing() {
+  return (
+    <section id="pricing" className="relative py-20 bg-[#F2F2F2]">
+      <div className="container">
+        <div className="text-center mb-16">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-[#1A1A1A] mb-4">
+            Grow Your Business with Smart Rewards
+          </h2>
+
+        </div>
+        <div className="flex w-[350px] lg:w-full mx-auto flex-col lg:flex-row gap-10 lg:gap-2 justify-between items-stretch border-2 rounded-xl min-h-96">
+          
+            <div className='relative w-full lg:w-3/4 flex flex-col lg:flex-row justify-between p-10 gap-10'>
+              <div className='absolute top-[-17px] left-[30px] bg-black rounded-full px-4'>
+                <h1 className='text-xl text-white'>Free for limited time</h1>
+              </div>
+              <div className='w-full lg:w-1/3 flex flex-col justify-start items-start'>
+                <h1 className='text-xl text-black '>Free for limited time</h1>
+                <h1 className='line-through text-2xl p-2'>299/month</h1>
+                <ul className='flex flex-col gap-2'>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-[#EC7508] rounded-full bg-black p-1" />
+                    <span>Unlimited store listing</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-[#EC7508] rounded-full bg-black p-1" />
+                    <span>1 QR code setup</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-[#EC7508] rounded-full bg-black p-1" />
+                    <span>1 reward campaign per month</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-[#EC7508] rounded-full bg-black p-1" />
+                    <span>Customer loyalty tracking</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-[#EC7508] rounded-full bg-black p-1" />
+                    <span>Offer posting (limited)</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-[#EC7508] rounded-full bg-black p-1" />
+                    <span>Basic analytics dashboard</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-[#EC7508] rounded-full bg-black p-1" />
+                    <span>Mobile app access</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-[#EC7508] rounded-full bg-black p-1" />
+                    <span>Lead collection via QR scan</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-[#EC7508] rounded-full bg-black p-1" />
+                    <span>Local customer engagement</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-[#EC7508] rounded-full bg-black p-1" />
+                    <span>Customer feedback collection</span>
+                  </li>
+                </ul>
+              </div>
+              <div className='w-full lg:w-1/3 flex flex-col justify-start items-start'>
+                <h1 className='text-xl text-black '>Upgrade to One Rewards Pro</h1>
+                <h1 className='line-through text-2xl p-2'>499/month</h1>
+                <ul className='flex flex-col gap-2'>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-[#EC7508] rounded-full bg-black p-1" />
+                    <span>Unlimited reward campaigns</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-[#EC7508] rounded-full bg-black p-1" />
+                    <span>Unlimited offer postings</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-[#EC7508] rounded-full bg-black p-1" />
+                    <span>Advanced analytics dashboard</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-[#EC7508] rounded-full bg-black p-1" />
+                    <span>Priority customer support</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-[#EC7508] rounded-full bg-black p-1" />
+                    <span>Customer segmentation & targeting</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-[#EC7508] rounded-full bg-black p-1" />
+                    <span>In-app brand promotion</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-[#EC7508] rounded-full bg-black p-1" />
+                    <span>Auto reminder notifications to customers</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-[#EC7508] rounded-full bg-black p-1" />
+                    <span>Access to special event promotions</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-[#EC7508] rounded-full bg-black p-1" />
+                    <span>Store profile video uploads</span>
+                  </li>
+                </ul>
+              </div>
+              <div className='w-full lg:w-1/3 flex flex-col justify-start items-start'>
+                <h1 className='text-xl text-black '>Go Elite with One Rewards</h1>
+                <h1 className='line-through text-2xl p-2'>999/month</h1>
+                <ul className='flex flex-col gap-2 '>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-[#EC7508] rounded-full bg-black p-1" />
+                    <span>Featured store listing</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-[#EC7508] rounded-full bg-black p-1" />
+                    <span>Sponsored offers and banners</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-[#EC7508] rounded-full bg-black p-1" />
+                    <span>Location-based push notifications</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-[#EC7508] rounded-full bg-black p-1" />
+                    <span>QR gamification campaigns</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-[#EC7508] rounded-full bg-black p-1" />
+                    <span>Geo-fencing based customer targeting</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-[#EC7508] rounded-full bg-black p-1" />
+                    <span>Custom branding on QR and offers</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-[#EC7508] rounded-full bg-black p-1" />
+                    <span>Detailed customer reports </span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="h-5 w-5 text-orange-400 rounded-full bg-black p-1" />
+                    <span>WhatsApp CRM integration</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className='w-full lg:w-1/4 bg-[#e9e9e9] flex flex-col justify-center items-center text-center'>
+              <h1 className='text-2xl font-medium text-[#1A1A1A]  p-7 lg:p-2'>🧡 Special Launch Offer 🧡</h1>
+              <h1 className='text-lg text-[#1A1A1A] p-2 mb-6'>Sign up today and enjoy full features for FREE — no hidden charges, no commitment, until further notice!</h1>
+              <button className='bg-[#EC7508] text-white  px-4 py-2 rounded-md'>Get started</button>
+            </div>
+        </div>
+      </div>
+
+    </section>
   )
 }
 
@@ -877,8 +1033,8 @@ function ListedItems() {
             >
               <CarouselContent className="md:-ml-4">
                 {items.map((item, index) => (
-                  <CarouselItem 
-                    key={index} 
+                  <CarouselItem
+                    key={index}
                     className="pl-2 md:pl-4 basis-full sm:basis-1/2 md:basis-1/2 lg:basis-1/3"
                   >
                     <div className="h-[300px] sm:h-[350px] md:h-[400px] w-full p-2 sm:p-3 md:p-4 rounded-xl shadow-md bg-white/95 border border-gray-100 hover:shadow-lg transition-shadow duration-300">
